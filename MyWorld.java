@@ -15,7 +15,7 @@ public class MyWorld extends World
         super(600, 400, 1);
         
         Cat cat = new Cat ();
-        addObject(cat, 0, 350);
+        addObject(cat, 100, 250);
 
     }
     
