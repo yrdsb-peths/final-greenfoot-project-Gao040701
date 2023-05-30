@@ -13,14 +13,13 @@ public class Cat extends Actor
 
     GreenfootImage[] stillRightImages = new GreenfootImage[8];
     GreenfootImage[] stillLeftImages = new GreenfootImage[8];
-    GreenfootImage[] jumpRightImages = new GreenfootImage[9];
-    GreenfootImage[] jumpLeftImages = new GreenfootImage[9];
+    GreenfootImage[] jumpRightImages = new GreenfootImage[8];
+    GreenfootImage[] jumpLeftImages = new GreenfootImage[8];
     GreenfootImage[] runRightImages = new GreenfootImage[12];
     GreenfootImage[] runLeftImages = new GreenfootImage[12];
     
     SimpleTimer animationTimer = new SimpleTimer();
     boolean facingRight = true;
-    boolean isJumping = false;
     public Cat(){
         for (int i = 0; i < runRightImages.length; i++){
             runRightImages[i] = new GreenfootImage("images/catRun/run" + i + ".png");
@@ -40,7 +39,7 @@ public class Cat extends Actor
         
         for (int i = 0; i < stillRightImages.length; i++){
             stillRightImages[i] = new GreenfootImage("images/catStill/still" + i + ".png");
-            stillRightImages[i].scale(100,100);
+            stillRightImages[i].scale(80,80);
             stillLeftImages[i] = new GreenfootImage("images/catStill/still" + i + ".png");
             stillLeftImages[i].mirrorHorizontally(); 
             stillLeftImages[i].scale(80,80); 
@@ -50,7 +49,7 @@ public class Cat extends Actor
     }
     
     private int imageIndex = 0;
-    
+    private boolean isJumping = false;
     public void act()
     {
         // Add your action code here.
@@ -66,18 +65,33 @@ public class Cat extends Actor
         animateCat();
     }
 
-
     public void animateCat(){
-        if (animationTimer.millisElapsed() < 200){
+        if (animationTimer.millisElapsed() < 100){
             return;
         }
         animationTimer.mark(); 
         if (facingRight){
-            imageIndex = (imageIndex + 1) % runRightImages.length;
-            setImage(runRightImages[imageIndex]);            
+            if (Greenfoot.isKeyDown("Up")){
+                imageIndex = (imageIndex + 1) % jumpRightImages.length;
+                setImage(jumpRightImages[imageIndex]);
+            }else if (Greenfoot.isKeyDown("Right")){
+                imageIndex = (imageIndex + 1) % runRightImages.length;
+                setImage(runRightImages[imageIndex]);
+            }else{
+                imageIndex = (imageIndex + 1) % stillRightImages.length;
+                setImage(stillRightImages[imageIndex]);            
+            }
         }else{
-            imageIndex = (imageIndex + 1) % stillLeftImages.length;
-            setImage(stillLeftImages[imageIndex]);
+            if (Greenfoot.isKeyDown("Up")){
+                imageIndex = (imageIndex + 1) % jumpLeftImages.length;
+                setImage(jumpLeftImages[imageIndex]);
+            }else if (Greenfoot.isKeyDown("Left")){
+                imageIndex = (imageIndex + 1) % runLeftImages.length;
+                setImage(runLeftImages[imageIndex]);
+            }else{
+                imageIndex = (imageIndex + 1) % stillLeftImages.length;
+                setImage(stillLeftImages[imageIndex]);            
+            }
         }
     }
     
