@@ -1,6 +1,6 @@
 #Greenfoot project file
 class.Cat.image=yellow-draught.png
-class.TitleScreen.image=background.jpg
+class.TitleScreen.image=game1.png
 dependency1.from=MyWorld
 dependency1.to=Cat
 dependency1.type=UsesDependency
@@ -10,10 +10,10 @@ dependency2.type=UsesDependency
 dependency3.from=Cat
 dependency3.to=SimpleTimer
 dependency3.type=UsesDependency
-editor.fx.0.height=1056
-editor.fx.0.width=1936
-editor.fx.0.x=1358
-editor.fx.0.y=-321
+editor.fx.0.height=0
+editor.fx.0.width=0
+editor.fx.0.x=0
+editor.fx.0.y=0
 height=1056
 package.numDependencies=3
 package.numTargets=4
