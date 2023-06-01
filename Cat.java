@@ -8,8 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Cat extends Actor
 {
-    int groundLevel = 300;
-    int ySpeed;
+    int groundLevel = 350;
 
     GreenfootImage[] stillRightImages = new GreenfootImage[8];
     GreenfootImage[] stillLeftImages = new GreenfootImage[8];
@@ -20,6 +19,8 @@ public class Cat extends Actor
     
     SimpleTimer animationTimer = new SimpleTimer();
     boolean facingRight = true;
+    
+    int dx = 0, dy = 0;
     public Cat(){
         for (int i = 0; i < runRightImages.length; i++){
             runRightImages[i] = new GreenfootImage("images/catRun/run" + i + ".png");
@@ -52,19 +53,25 @@ public class Cat extends Actor
     private boolean isJumping = false;
     public void act()
     {
-        // Add your action code here.
-        if (Greenfoot.isKeyDown("Left")){
+        //getGroundLevel();
+        
+        if (Greenfoot.isKeyDown("left")){
             setLocation(getX()-3,getY());
             facingRight = false;
-        }else if (Greenfoot.isKeyDown("Right")){
+        }else if (Greenfoot.isKeyDown("right")){
             setLocation(getX()+3,getY());
             facingRight = true;
         }
-        jump();
         
+        jump();
+        //move();
         animateCat();
+        getCoin();
     }
-
+    
+    /**
+     * set animation for jump, run, and stand still
+     */
     public void animateCat(){
         if (animationTimer.millisElapsed() < 100){
             return;
@@ -95,22 +102,40 @@ public class Cat extends Actor
         }
     }
     
+    /**
+     * jump from the ground and fall when not on the ground
+     */
     public void jump(){
-        boolean onGround = (getY() == groundLevel);
+        //onGround means that it is intersting with a barrier
+        boolean onGround = getOneIntersectingObject(Barrier.class) != null;
         if (!onGround){
-            ySpeed++; // adds gravity effect
-            setLocation(getX(), getY()+ySpeed); // fall (rising slower or falling faster)
-            if (getY()>=groundLevel) // has landed (reached ground level)
+            dy++; 
+            for (int i = 0; i < dy; i++) {
+                setLocation(getX(), getY()+1);
+                if (getOneIntersectingObject(Barrier.class) != null){
+                    setLocation(getX(), getY()-1);
+                }
+            }
+            if (getY() >= groundLevel)
             {
-                setLocation(getX(), groundLevel); // set on ground
-                Greenfoot.getKey(); // clears any key pressed during jump
-           }
+                setLocation(getX(), groundLevel); 
+                Greenfoot.getKey(); 
+            }
         }else{
             if (Greenfoot.isKeyDown("Up")) // jump key detected
             {
-                ySpeed = -13; // add jump speed
-                setLocation(getX(), getY()+ySpeed); // leave ground
+                dy = -13; // add jump speed
+                setLocation(getX(), getY() + dy); 
             }
+        }
+        
+    }
+    
+    public void getCoin(){
+        if (isTouching(Coin.class)){
+            removeTouching(Coin.class);
+            MyWorld world = (MyWorld) getWorld();
+            world.IncreaseScore();
         }
     }
 }
