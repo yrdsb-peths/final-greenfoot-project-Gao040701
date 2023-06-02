@@ -53,16 +53,6 @@ public class Cat extends Actor
     private boolean isJumping = false;
     public void act()
     {
-        //getGroundLevel();
-        /*
-        if (Greenfoot.isKeyDown("left")){
-            setLocation(getX()-3,getY());
-            facingRight = false;
-        }else if (Greenfoot.isKeyDown("right")){
-            setLocation(getX()+3,getY());
-            facingRight = true;
-        }
-        */
         //jump();
         move();
         animateCat();
@@ -109,21 +99,12 @@ public class Cat extends Actor
         }if (Greenfoot.isKeyDown("right")){
             setLocation(getX()+3,getY());
             facingRight = true;
-        }if (Greenfoot.isKeyDown("Up")){
+        }if (Greenfoot.isKeyDown("Up")&& isTouching(Solids.class)){
             dy = -13; 
             setLocation(getX(), getY() + dy); 
             Greenfoot.getKey();
         }
-        /*
-        if (getOneIntersectingObject(Solids.class)!=null){
-            if (getOneIntersectingObject(Solids.class).getY() < getY()){
-                if (dy > 0){
-                    setLocation(getX(), getY()+10);
-                }
-            }
-        }
-        else{*/
-        if ((!isTouching(Solids.class))||(isTouching(Solids.class) && getOneIntersectingObject(Solids.class).getY() < getY())){
+        if ((!isTouching(Solids.class))||(isTouching(Solids.class) && getOneIntersectingObject(Solids.class).getY() <= getY())){
             dy++; 
             if (dy >= 0){
                 for (int i = 0; i < dy; i++){
@@ -141,34 +122,17 @@ public class Cat extends Actor
                 }
             }
         }
-
     }
-    
-    /**
-     * jump from the ground and fall when not on the ground
-     */
-    /*public void jump(){
-        //onGround means that it is intersting with a barrier
-        boolean onGround = getOneIntersectingObject(Barrier.class) != null;
-        if (!onGround){
-            dy++; 
-            setLocation(getX(), getY()+dy);
-            if (getY() >= groundLevel)
-            {
-                setLocation(getX(), groundLevel); 
-                Greenfoot.getKey(); 
-            }
-        }else{
-            if (Greenfoot.isKeyDown("Up")) // jump key detected
-            {
-                dy = -13; // add jump speed
-                setLocation(getX(), getY() + dy); 
-            }
+    /*
+    public int getSA(){
+        if (isTouching(Solids.class)){
+            Actor aSolid = getOneIntersectingObject(Solids.class);
+            int num = aSolid.getY();
+            num -= aSolid.getHeight();
+            return num;
         }
-        
     }
     */
-    
     public void getCoin(){
         if (isTouching(Coin.class)){
             removeTouching(Coin.class);
