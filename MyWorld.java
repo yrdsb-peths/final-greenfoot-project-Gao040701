@@ -16,6 +16,7 @@ public class MyWorld extends World
         
         Cat cat = new Cat ();
         addObject(cat, 100, 250);
+        /*
         addObject(new Barrier(5, 160, 0), 0, 337);
         addObject(new Barrier(5, 80, 0), 215, 360);
         addObject(new Barrier(5, 20, 0), 345, 305);
@@ -23,6 +24,7 @@ public class MyWorld extends World
         addObject(new Barrier(5, 20, 0), 515, 280);
         addObject(new Barrier(5, 20, 0), 600, 337);
         addObject(new Barrier(5, 600 ,0), 300, 400);
+        */
         //addObject(new Barrier(50, 298, 340), 239, 150);
         //addObject(new Barrier(50, 600, 0), 300, 300);
         //addObject(new Barrier(50, 420, 80), 500, 200);

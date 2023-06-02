@@ -54,7 +54,7 @@ public class Cat extends Actor
     public void act()
     {
         //getGroundLevel();
-        
+        /*
         if (Greenfoot.isKeyDown("left")){
             setLocation(getX()-3,getY());
             facingRight = false;
@@ -62,9 +62,9 @@ public class Cat extends Actor
             setLocation(getX()+3,getY());
             facingRight = true;
         }
-        
-        jump();
-        //move();
+        */
+        //jump();
+        move();
         animateCat();
         getCoin();
     }
@@ -102,20 +102,57 @@ public class Cat extends Actor
         }
     }
     
+    public void move(){
+        if (Greenfoot.isKeyDown("left")){
+            setLocation(getX()-3,getY());
+            facingRight = false;
+        }if (Greenfoot.isKeyDown("right")){
+            setLocation(getX()+3,getY());
+            facingRight = true;
+        }if (Greenfoot.isKeyDown("Up")){
+            dy = -13; 
+            setLocation(getX(), getY() + dy); 
+            Greenfoot.getKey();
+        }
+        /*
+        if (getOneIntersectingObject(Solids.class)!=null){
+            if (getOneIntersectingObject(Solids.class).getY() < getY()){
+                if (dy > 0){
+                    setLocation(getX(), getY()+10);
+                }
+            }
+        }
+        else{*/
+        if ((!isTouching(Solids.class))||(isTouching(Solids.class) && getOneIntersectingObject(Solids.class).getY() < getY())){
+            dy++; 
+            if (dy >= 0){
+                for (int i = 0; i < dy; i++){
+                    setLocation(getX(), getY()+1);
+                    if (getOneIntersectingObject(Solids.class)!=null){
+                        break;
+                    }
+                }
+            }if (dy < 0){
+                for (int i = dy; i <0; i++){
+                    setLocation(getX(), getY()-1);
+                    if (getOneIntersectingObject(Solids.class)!=null){
+                        dy = 0;
+                    }
+                }
+            }
+        }
+
+    }
+    
     /**
      * jump from the ground and fall when not on the ground
      */
-    public void jump(){
+    /*public void jump(){
         //onGround means that it is intersting with a barrier
         boolean onGround = getOneIntersectingObject(Barrier.class) != null;
         if (!onGround){
             dy++; 
-            for (int i = 0; i < dy; i++) {
-                setLocation(getX(), getY()+1);
-                if (getOneIntersectingObject(Barrier.class) != null){
-                    setLocation(getX(), getY()-1);
-                }
-            }
+            setLocation(getX(), getY()+dy);
             if (getY() >= groundLevel)
             {
                 setLocation(getX(), groundLevel); 
@@ -130,6 +167,7 @@ public class Cat extends Actor
         }
         
     }
+    */
     
     public void getCoin(){
         if (isTouching(Coin.class)){
