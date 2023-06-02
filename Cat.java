@@ -8,8 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Cat extends Actor
 {
-    int groundLevel = 300;
-    int ySpeed;
+    int groundLevel = 350;
 
     GreenfootImage[] stillRightImages = new GreenfootImage[8];
     GreenfootImage[] stillLeftImages = new GreenfootImage[8];
@@ -20,6 +19,8 @@ public class Cat extends Actor
     
     SimpleTimer animationTimer = new SimpleTimer();
     boolean facingRight = true;
+    
+    int dx = 0, dy = 0;
     public Cat(){
         for (int i = 0; i < runRightImages.length; i++){
             runRightImages[i] = new GreenfootImage("images/catRun/run" + i + ".png");
@@ -52,19 +53,15 @@ public class Cat extends Actor
     private boolean isJumping = false;
     public void act()
     {
-        // Add your action code here.
-        if (Greenfoot.isKeyDown("Left")){
-            setLocation(getX()-3,getY());
-            facingRight = false;
-        }else if (Greenfoot.isKeyDown("Right")){
-            setLocation(getX()+3,getY());
-            facingRight = true;
-        }
-        jump();
-        
+        //jump();
+        move();
         animateCat();
+        getCoin();
     }
-
+    
+    /**
+     * set animation for jump, run, and stand still
+     */
     public void animateCat(){
         if (animationTimer.millisElapsed() < 100){
             return;
@@ -95,22 +92,52 @@ public class Cat extends Actor
         }
     }
     
-    public void jump(){
-        boolean onGround = (getY() == groundLevel);
-        if (!onGround){
-            ySpeed++; // adds gravity effect
-            setLocation(getX(), getY()+ySpeed); // fall (rising slower or falling faster)
-            if (getY()>=groundLevel) // has landed (reached ground level)
-            {
-                setLocation(getX(), groundLevel); // set on ground
-                Greenfoot.getKey(); // clears any key pressed during jump
-           }
-        }else{
-            if (Greenfoot.isKeyDown("Up")) // jump key detected
-            {
-                ySpeed = -13; // add jump speed
-                setLocation(getX(), getY()+ySpeed); // leave ground
+    public void move(){
+        if (Greenfoot.isKeyDown("left")){
+            setLocation(getX()-3,getY());
+            facingRight = false;
+        }if (Greenfoot.isKeyDown("right")){
+            setLocation(getX()+3,getY());
+            facingRight = true;
+        }if (Greenfoot.isKeyDown("Up")&& isTouching(Solids.class)){
+            dy = -13; 
+            setLocation(getX(), getY() + dy); 
+            Greenfoot.getKey();
+        }
+        if ((!isTouching(Solids.class))||(isTouching(Solids.class) && getOneIntersectingObject(Solids.class).getY() <= getY())){
+            dy++; 
+            if (dy >= 0){
+                for (int i = 0; i < dy; i++){
+                    setLocation(getX(), getY()+1);
+                    if (getOneIntersectingObject(Solids.class)!=null){
+                        break;
+                    }
+                }
+            }if (dy < 0){
+                for (int i = dy; i <0; i++){
+                    setLocation(getX(), getY()-1);
+                    if (getOneIntersectingObject(Solids.class)!=null){
+                        dy = 0;
+                    }
+                }
             }
+        }
+    }
+    /*
+    public int getSA(){
+        if (isTouching(Solids.class)){
+            Actor aSolid = getOneIntersectingObject(Solids.class);
+            int num = aSolid.getY();
+            num -= aSolid.getHeight();
+            return num;
+        }
+    }
+    */
+    public void getCoin(){
+        if (isTouching(Coin.class)){
+            removeTouching(Coin.class);
+            MyWorld world = (MyWorld) getWorld();
+            world.IncreaseScore();
         }
     }
 }
