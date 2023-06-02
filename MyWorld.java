@@ -21,7 +21,7 @@ public class MyWorld extends World
         Coin coin1 = new Coin();
         addObject(coin1, 440, 310);
         Coin coin2 = new Coin();
-        addObject(coin2, 510, 270);
+        addObject(coin2, 510, 230);
         Ground1 ground11 = new Ground1();
         addObject(ground11, 40,370);
         Ground1 ground12 = new Ground1();
@@ -33,7 +33,7 @@ public class MyWorld extends World
         Cloud cloud2 = new Cloud();
         addObject(cloud2, 440, 330);
         Cloud cloud3 = new Cloud();
-        addObject(cloud3, 510, 290);
+        addObject(cloud3, 510, 250);
     }
     public void IncreaseScore(){
         score++;
