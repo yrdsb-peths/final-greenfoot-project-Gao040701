@@ -18,7 +18,7 @@ public class Barrier extends Actor
     {
         GreenfootImage img = new GreenfootImage(length, thickness);
         //img.setColor(Color.BLUE);
-        img.setTransparency(255);
+        img.setTransparency(0);
         img.fill();
         setRotation(rotation);
         setImage(img);

@@ -56,6 +56,7 @@ public class Cat extends Actor
         move();
         animateCat();
         getCoin();
+        Next();
     }
     
     /**
@@ -86,14 +87,14 @@ public class Cat extends Actor
                 setImage(runLeftImages[imageIndex]);
             }else{
                 imageIndex = (imageIndex + 1) % stillLeftImages.length;
-                setImage(stillLeftImages[imageIndex]);            
+                setImage(stillLeftImages[imageIndex]);
             }
         }
     }
     
     public void move(){
         if (Greenfoot.isKeyDown("Up")&& isTouching(Solids.class)){
-            dy = -13; 
+            dy = -15; 
             setLocation(getX(), getY() + dy); 
             Greenfoot.getKey();
         }
@@ -125,6 +126,7 @@ public class Cat extends Actor
         }
         touchBar();
     }
+    
     public void getCoin(){
         if (isTouching(Coin.class)){
             removeTouching(Coin.class);
@@ -132,11 +134,21 @@ public class Cat extends Actor
             world.IncreaseScore();
         }
     }
+    
     public void touchBar(){
         if (isTouching(LeftBarrier.class)){
             setLocation(getX()-3,getY());
         }else if (isTouching(RightBarrier.class)){
             setLocation(getX()+3,getY());
+        }
+    }
+    
+    public void Next(){
+        if(getX() >= 600){
+            if (getWorld().getClass().getName().equals("MyWorld")){
+                MyWorld world = (MyWorld) getWorld();
+                world.toNext();
+            }
         }
     }
 }
