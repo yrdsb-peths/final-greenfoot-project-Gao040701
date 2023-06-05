@@ -24,26 +24,26 @@ public class Cat extends Actor
     public Cat(){
         for (int i = 0; i < runRightImages.length; i++){
             runRightImages[i] = new GreenfootImage("images/catRun/run" + i + ".png");
-            runRightImages[i].scale(80,80);
+            runRightImages[i].scale(60,40);
             runLeftImages[i] = new GreenfootImage("images/catRun/run" + i + ".png");
             runLeftImages[i].mirrorHorizontally();
-            runLeftImages[i].scale(80,80);
+            runLeftImages[i].scale(60,40);
         }
         
         for (int i = 0; i < jumpRightImages.length; i++){
             jumpRightImages[i] = new GreenfootImage("images/catJump/jump" + i + ".png");
-            jumpRightImages[i].scale(80,80);
+            jumpRightImages[i].scale(60,40);
             jumpLeftImages[i] = new GreenfootImage("images/catJump/jump" + i + ".png");
             jumpLeftImages[i].mirrorHorizontally(); 
-            jumpLeftImages[i].scale(80,80);            
+            jumpLeftImages[i].scale(60,40);            
         }
         
         for (int i = 0; i < stillRightImages.length; i++){
             stillRightImages[i] = new GreenfootImage("images/catStill/still" + i + ".png");
-            stillRightImages[i].scale(80,80);
+            stillRightImages[i].scale(60,40);
             stillLeftImages[i] = new GreenfootImage("images/catStill/still" + i + ".png");
             stillLeftImages[i].mirrorHorizontally(); 
-            stillLeftImages[i].scale(80,80); 
+            stillLeftImages[i].scale(60,40); 
         }
         setImage(runRightImages[0]);
         animationTimer.mark();
