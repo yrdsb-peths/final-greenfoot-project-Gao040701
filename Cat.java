@@ -53,7 +53,6 @@ public class Cat extends Actor
     private boolean isJumping = false;
     public void act()
     {
-        //jump();
         move();
         animateCat();
         getCoin();
@@ -93,18 +92,20 @@ public class Cat extends Actor
     }
     
     public void move(){
-        if (Greenfoot.isKeyDown("left")){
-            setLocation(getX()-3,getY());
-            facingRight = false;
-        }if (Greenfoot.isKeyDown("right")){
-            setLocation(getX()+3,getY());
-            facingRight = true;
-        }if (Greenfoot.isKeyDown("Up")&& isTouching(Solids.class)){
+        if (Greenfoot.isKeyDown("Up")&& isTouching(Solids.class)){
             dy = -13; 
             setLocation(getX(), getY() + dy); 
             Greenfoot.getKey();
         }
-        if ((!isTouching(Solids.class))||(isTouching(Solids.class) && getOneIntersectingObject(Solids.class).getY() <= getY())){
+        else if (Greenfoot.isKeyDown("left")){
+            setLocation(getX()-3,getY());
+            facingRight = false;
+        }
+        else if (Greenfoot.isKeyDown("right")){
+            setLocation(getX()+3,getY());
+            facingRight = true;
+        }
+        if (!isTouching(Solids.class)){
             dy++; 
             if (dy >= 0){
                 for (int i = 0; i < dy; i++){
@@ -113,7 +114,7 @@ public class Cat extends Actor
                         break;
                     }
                 }
-            }if (dy < 0){
+            }else{
                 for (int i = dy; i <0; i++){
                     setLocation(getX(), getY()-1);
                     if (getOneIntersectingObject(Solids.class)!=null){
@@ -122,22 +123,20 @@ public class Cat extends Actor
                 }
             }
         }
+        touchBar();
     }
-    /*
-    public int getSA(){
-        if (isTouching(Solids.class)){
-            Actor aSolid = getOneIntersectingObject(Solids.class);
-            int num = aSolid.getY();
-            num -= aSolid.getHeight();
-            return num;
-        }
-    }
-    */
     public void getCoin(){
         if (isTouching(Coin.class)){
             removeTouching(Coin.class);
             MyWorld world = (MyWorld) getWorld();
             world.IncreaseScore();
+        }
+    }
+    public void touchBar(){
+        if (isTouching(LeftBarrier.class)){
+            setLocation(getX()-3,getY());
+        }else if (isTouching(RightBarrier.class)){
+            setLocation(getX()+3,getY());
         }
     }
 }

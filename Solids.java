@@ -17,7 +17,5 @@ public class Solids extends Actor
     {
         // Add your action code here.
     }
-    public int getHeight(){
-         return height;
-    }
+    
 }
