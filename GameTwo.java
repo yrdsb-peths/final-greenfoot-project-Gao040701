@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class GameTwo extends World
 {
     static int score = MyWorld.score;
+    static int heart = MyWorld.heartVal;
     Label coinLabel;
     public GameTwo()
     {
@@ -27,6 +28,8 @@ public class GameTwo extends World
         
         coinLabel = new Label(score,50);
         addObject(coinLabel, 50, 50);
+        Heart heart = new Heart();
+        addObject(heart, 80, 100);
     }
     public void IncreaseScore(){
         score++;

@@ -9,12 +9,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     static int score = 0;
+    static int heartVal = 6;
     Label coinLabel;
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1,false);
-        
+        score = 0;
+        heartVal = 6;
         Water water = new Water();
         addObject(water, 300, 400);
         Cat cat = new Cat ();
@@ -36,18 +38,25 @@ public class MyWorld extends World
         addObject(cloud1, 345, 320);
         createBar(cloud1);
         Cloud cloud2 = new Cloud();
-        addObject(cloud2, 440, 330);
-        createBar(cloud2);
+        //addObject(cloud2, 440, 330);
+        //createBar(cloud2);
         Cloud cloud3 = new Cloud();
         addObject(cloud3, 510, 250);
         createBar(cloud3);
         
         coinLabel = new Label(score,50);
         addObject(coinLabel, 50, 50);
+        Heart heart = new Heart(heartVal);
+        addObject(heart, 80, 100);
+        
     }
     public void IncreaseScore(){
         score++;
         coinLabel.setValue(score);
+    }
+    public void setHeart(int heartLeft){
+        Heart heart = new Heart(heartLeft);
+        addObject(heart, 80, 100);
     }
     public void createBar(Solids solid){
         int x = solid.getX();
@@ -61,5 +70,8 @@ public class MyWorld extends World
     }
     public void toNext(){
         Greenfoot.setWorld(new GameTwo());
+    }
+    public void minusHeartVal(int val){
+        heartVal -= val;
     }
 }

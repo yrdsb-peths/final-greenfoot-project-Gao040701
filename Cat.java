@@ -87,7 +87,7 @@ public class Cat extends Actor
                 setImage(runLeftImages[imageIndex]);
             }else{
                 imageIndex = (imageIndex + 1) % stillLeftImages.length;
-                setImage(stillLeftImages[imageIndex]);            
+                setImage(stillLeftImages[imageIndex]);
             }
         }
     }
