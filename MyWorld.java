@@ -17,10 +17,9 @@ public class MyWorld extends World
         super(600, 400, 1,false);
         score = 0;
         heartVal = 6;
+        
         Water water = new Water();
         addObject(water, 300, 400);
-        Cat cat = new Cat ();
-        addObject(cat, 50, 250);
         Ground1 ground11 = new Ground1();
         addObject(ground11, 40,370);
         createBar(ground11);
@@ -48,6 +47,8 @@ public class MyWorld extends World
         Heart heart = new Heart(heartVal);
         addObject(heart, 80, 100);
         
+        Cat cat = new Cat ();
+        addObject(cat, 50, 250);
     }
     public void act(){
         if (heartVal <= 0){
