@@ -1,21 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Barrier here.
+ * Barrier - created on the left and right side of Solids
+ * prevent the cat from stuch into the solid 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Angela 
+ * @version 06/02/2023 
  */
 public class Barrier extends Actor
 {
-    /**
-     * Act - do whatever the Barrier wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public Barrier(int thick, int len, int rot)
     {
         updateImage(len, thick, rot);
     }
+    
     private void updateImage(int length, int thickness, int rotation)
     {
         GreenfootImage img = new GreenfootImage(length, thickness);
@@ -25,5 +23,9 @@ public class Barrier extends Actor
         setRotation(rotation);
         setImage(img);
     }
-
+    public void touchCat(){
+        if (isTouching(Cat.class)){
+            
+        }
+    }
 }

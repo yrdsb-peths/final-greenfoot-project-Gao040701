@@ -104,7 +104,7 @@ public class Cat extends Actor
             setLocation(getX(), getY() + dy); 
             Greenfoot.getKey();
         }
-        if ((!isTouching(Solids.class))||(isTouching(Solids.class) && getOneIntersectingObject(Solids.class).getY() <= getY())){
+        if (!isTouching(Solids.class)){
             dy++; 
             if (dy >= 0){
                 for (int i = 0; i < dy; i++){
@@ -123,21 +123,14 @@ public class Cat extends Actor
             }
         }
     }
-    /*
-    public int getSA(){
-        if (isTouching(Solids.class)){
-            Actor aSolid = getOneIntersectingObject(Solids.class);
-            int num = aSolid.getY();
-            num -= aSolid.getHeight();
-            return num;
-        }
-    }
-    */
     public void getCoin(){
         if (isTouching(Coin.class)){
             removeTouching(Coin.class);
             MyWorld world = (MyWorld) getWorld();
             world.IncreaseScore();
         }
+    }
+    public void stopLR(){
+        setLocation(getX()-dx, getY()-dy);
     }
 }
