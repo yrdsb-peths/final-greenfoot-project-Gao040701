@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    int score = 0;
+    public static int score = 0;
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -49,8 +49,8 @@ public class MyWorld extends World
         int y = solid.getY();
         int height = solid.getImage().getHeight();
         int width = solid.getImage().getWidth();
-        Barrier leftBarrier = new Barrier(5,height-2,90);
-        Barrier rightBarrier = new Barrier(5,height-2,90);
+        LeftBarrier leftBarrier = new LeftBarrier(5,height-10,90);
+        RightBarrier rightBarrier = new RightBarrier(5,height-10,90);
         addObject(leftBarrier, x-width/2, y);
         addObject(rightBarrier, x+width/2, y);
     }

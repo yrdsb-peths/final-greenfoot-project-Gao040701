@@ -53,7 +53,6 @@ public class Cat extends Actor
     private boolean isJumping = false;
     public void act()
     {
-        //jump();
         move();
         animateCat();
         getCoin();
@@ -93,16 +92,18 @@ public class Cat extends Actor
     }
     
     public void move(){
-        if (Greenfoot.isKeyDown("left")){
-            setLocation(getX()-3,getY());
-            facingRight = false;
-        }if (Greenfoot.isKeyDown("right")){
-            setLocation(getX()+3,getY());
-            facingRight = true;
-        }if (Greenfoot.isKeyDown("Up")&& isTouching(Solids.class)){
+        if (Greenfoot.isKeyDown("Up")&& isTouching(Solids.class)){
             dy = -13; 
             setLocation(getX(), getY() + dy); 
             Greenfoot.getKey();
+        }
+        else if (Greenfoot.isKeyDown("left")){
+            setLocation(getX()-3,getY());
+            facingRight = false;
+        }
+        else if (Greenfoot.isKeyDown("right")){
+            setLocation(getX()+3,getY());
+            facingRight = true;
         }
         if (!isTouching(Solids.class)){
             dy++; 
@@ -113,7 +114,7 @@ public class Cat extends Actor
                         break;
                     }
                 }
-            }if (dy < 0){
+            }else{
                 for (int i = dy; i <0; i++){
                     setLocation(getX(), getY()-1);
                     if (getOneIntersectingObject(Solids.class)!=null){
@@ -122,6 +123,7 @@ public class Cat extends Actor
                 }
             }
         }
+        touchBar();
     }
     public void getCoin(){
         if (isTouching(Coin.class)){
@@ -130,7 +132,11 @@ public class Cat extends Actor
             world.IncreaseScore();
         }
     }
-    public void stopLR(){
-        setLocation(getX()-dx, getY()-dy);
+    public void touchBar(){
+        if (isTouching(LeftBarrier.class)){
+            setLocation(getX()-3,getY());
+        }else if (isTouching(RightBarrier.class)){
+            setLocation(getX()+3,getY());
+        }
     }
 }

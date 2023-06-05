@@ -23,9 +23,4 @@ public class Barrier extends Actor
         setRotation(rotation);
         setImage(img);
     }
-    public void touchCat(){
-        if (isTouching(Cat.class)){
-            
-        }
-    }
 }
