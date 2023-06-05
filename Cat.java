@@ -126,6 +126,7 @@ public class Cat extends Actor
         }
         touchBar();
     }
+    
     public void getCoin(){
         if (isTouching(Coin.class)){
             removeTouching(Coin.class);
@@ -133,6 +134,7 @@ public class Cat extends Actor
             world.IncreaseScore();
         }
     }
+    
     public void touchBar(){
         if (isTouching(LeftBarrier.class)){
             setLocation(getX()-3,getY());

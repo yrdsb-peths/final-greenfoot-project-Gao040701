@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    public static int score = 0;
+    static int score = 0;
+    Label coinLabel;
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -40,9 +41,13 @@ public class MyWorld extends World
         Cloud cloud3 = new Cloud();
         addObject(cloud3, 510, 250);
         createBar(cloud3);
+        
+        coinLabel = new Label(score,50);
+        addObject(coinLabel, 50, 50);
     }
     public void IncreaseScore(){
         score++;
+        coinLabel.setValue(score);
     }
     public void createBar(Solids solid){
         int x = solid.getX();

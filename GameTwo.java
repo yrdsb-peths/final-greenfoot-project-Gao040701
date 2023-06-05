@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameTwo extends World
 {
+    static int score = MyWorld.score;
+    Label coinLabel;
     public GameTwo()
     {
         super(600, 400, 1,false); 
@@ -22,10 +24,13 @@ public class GameTwo extends World
         Ground1 ground12 = new Ground1();
         addObject(ground12, 200,270);
         createBar(ground12);
+        
+        coinLabel = new Label(score,50);
+        addObject(coinLabel, 50, 50);
     }
     public void IncreaseScore(){
-        World world = new MyWorld();
-        //world.score ++;
+        score++;
+        coinLabel.setValue(score);
     }
     public void createBar(Solids solid){
         int x = solid.getX();
