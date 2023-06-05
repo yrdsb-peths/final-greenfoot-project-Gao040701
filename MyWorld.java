@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Scene 1 
+ * Game One scene 
  * 
  * @author Angela 
  * @version 05/30/2023
@@ -21,10 +21,6 @@ public class MyWorld extends World
         addObject(water, 300, 400);
         Cat cat = new Cat ();
         addObject(cat, 50, 250);
-        Coin coin1 = new Coin();
-        addObject(coin1, 440, 310);
-        Coin coin2 = new Coin();
-        addObject(coin2, 510, 230);
         Ground1 ground11 = new Ground1();
         addObject(ground11, 40,370);
         createBar(ground11);
@@ -37,11 +33,12 @@ public class MyWorld extends World
         Cloud cloud1 = new Cloud();
         addObject(cloud1, 345, 320);
         createBar(cloud1);
-        Cloud cloud2 = new Cloud();
-        //addObject(cloud2, 440, 330);
-        //createBar(cloud2);
+        Coin coin1 = new Coin();
+        addObject(coin1, 345, 300);
         Cloud cloud3 = new Cloud();
         addObject(cloud3, 510, 250);
+        Coin coin2 = new Coin();
+        addObject(coin2, 510, 230);
         createBar(cloud3);
         
         coinLabel = new Label(score,50);
@@ -50,14 +47,16 @@ public class MyWorld extends World
         addObject(heart, 80, 100);
         
     }
+    public void act(){
+        if (heartVal <= 0){
+            Greenfoot.setWorld(new GameOver());
+        }
+    }
     public void IncreaseScore(){
         score++;
         coinLabel.setValue(score);
     }
-    public void setHeart(int heartLeft){
-        Heart heart = new Heart(heartLeft);
-        addObject(heart, 80, 100);
-    }
+    
     public void createBar(Solids solid){
         int x = solid.getX();
         int y = solid.getY();
@@ -68,10 +67,15 @@ public class MyWorld extends World
         addObject(leftBarrier, x-width/2, y);
         addObject(rightBarrier, x+width/2, y);
     }
-    public void toNext(){
-        Greenfoot.setWorld(new GameTwo());
-    }
     public void minusHeartVal(int val){
         heartVal -= val;
     }
+    public void setHeart(int heartLeft){
+        Heart heart = new Heart(heartLeft);
+        addObject(heart, 80, 100);
+    }
+    public void toNext(){
+        Greenfoot.setWorld(new GameTwo());
+    }
+    
 }

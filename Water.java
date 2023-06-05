@@ -15,21 +15,32 @@ public class Water extends NonSolids
         removeCat();
     }
     public Water(){
-        //16:3
         water.scale(600, 50);
         setImage(water);
     }
     public void removeCat(){
         if (isTouching(Cat.class)){
             removeTouching(Cat.class);
-            MyWorld world = (MyWorld) getWorld();
-            world.minusHeartVal(2);
-            heartVal = world.heartVal; 
-            world.removeObjects(world.getObjects(Heart.class));
-            world.setHeart(heartVal);
-            if (heartVal > 0){
-                Cat cat = new Cat();
-                world.addObject(cat, 50, 250);
+            if (getWorld() instanceof MyWorld){
+                MyWorld world = (MyWorld) getWorld();
+                world.minusHeartVal(2);
+                heartVal = world.heartVal; 
+                world.removeObjects(world.getObjects(Heart.class));
+                world.setHeart(heartVal);
+                if (heartVal > 0){
+                    Cat cat = new Cat();
+                    world.addObject(cat, 50, 250);
+                }
+            }else if (getWorld() instanceof GameTwo){
+                GameTwo world = (GameTwo) getWorld();
+                world.minusHeartVal(2);
+                heartVal = world.heartVal; 
+                world.removeObjects(world.getObjects(Heart.class));
+                world.setHeart(heartVal);
+                if (heartVal > 0){
+                    Cat cat = new Cat();
+                    world.addObject(cat, 50, 250);
+                }
             }
         }
     }
