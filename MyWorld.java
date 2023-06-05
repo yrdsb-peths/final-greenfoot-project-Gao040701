@@ -25,8 +25,10 @@ public class MyWorld extends World
         addObject(ground11, 40,370);
         createBar(ground11);
         Ground1 ground12 = new Ground1();
-        addObject(ground12, 200, 400);
+        addObject(ground12, 170, 400);
         createBar(ground12);
+        Tree1 tree = new Tree1();
+        addObject(tree, 170, 210);
         Ground1 ground13 = new Ground1();
         addObject(ground13, 600, 380);
         createBar(ground13);
@@ -62,8 +64,8 @@ public class MyWorld extends World
         int y = solid.getY();
         int height = solid.getImage().getHeight();
         int width = solid.getImage().getWidth();
-        LeftBarrier leftBarrier = new LeftBarrier(5,height-10,90);
-        RightBarrier rightBarrier = new RightBarrier(5,height-10,90);
+        LeftBarrier leftBarrier = new LeftBarrier(5,height-5,90);
+        RightBarrier rightBarrier = new RightBarrier(5,height-5,90);
         addObject(leftBarrier, x-width/2, y);
         addObject(rightBarrier, x+width/2, y);
     }

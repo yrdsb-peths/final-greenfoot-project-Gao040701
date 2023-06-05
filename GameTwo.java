@@ -28,6 +28,9 @@ public class GameTwo extends World
         Ground1 ground13 = new Ground1();
         addObject(ground13, 400, 190);
         createBar(ground13);
+        Ground1 ground14 = new Ground1();
+        addObject(ground14, 600, 400);
+        createBar(ground14);
         
         coinLabel = new Label(score,50);
         addObject(coinLabel, 50, 50);
@@ -48,8 +51,8 @@ public class GameTwo extends World
         int y = solid.getY();
         int height = solid.getImage().getHeight();
         int width = solid.getImage().getWidth();
-        LeftBarrier leftBarrier = new LeftBarrier(5,height-10,90);
-        RightBarrier rightBarrier = new RightBarrier(5,height-10,90);
+        LeftBarrier leftBarrier = new LeftBarrier(5,height-5,90);
+        RightBarrier rightBarrier = new RightBarrier(5,height-5,90);
         addObject(leftBarrier, x-width/2, y);
         addObject(rightBarrier, x+width/2, y);
     }
