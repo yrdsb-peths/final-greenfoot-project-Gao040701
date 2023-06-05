@@ -56,6 +56,7 @@ public class Cat extends Actor
         move();
         animateCat();
         getCoin();
+        Next();
     }
     
     /**
@@ -93,7 +94,7 @@ public class Cat extends Actor
     
     public void move(){
         if (Greenfoot.isKeyDown("Up")&& isTouching(Solids.class)){
-            dy = -13; 
+            dy = -15; 
             setLocation(getX(), getY() + dy); 
             Greenfoot.getKey();
         }
@@ -137,6 +138,15 @@ public class Cat extends Actor
             setLocation(getX()-3,getY());
         }else if (isTouching(RightBarrier.class)){
             setLocation(getX()+3,getY());
+        }
+    }
+    
+    public void Next(){
+        if(getX() >= 600){
+            if (getWorld().getClass().getName().equals("MyWorld")){
+                MyWorld world = (MyWorld) getWorld();
+                world.toNext();
+            }
         }
     }
 }

@@ -10,17 +10,17 @@ public class GameTwo extends World
 {
     public GameTwo()
     {
-        super(600, 400, 1); 
+        super(600, 400, 1,false); 
         
         Water water = new Water();
-        addObject(water, 300, 500);
+        addObject(water, 300, 400);
         Cat cat = new Cat ();
-        addObject(cat, 100, 250);
+        addObject(cat, 10, 250);
         Ground1 ground11 = new Ground1();
-        addObject(ground11, 60, 350);
+        addObject(ground11, 0, 350);
         createBar(ground11);
         Ground1 ground12 = new Ground1();
-        addObject(ground12, 200,300);
+        addObject(ground12, 200,270);
         createBar(ground12);
     }
     public void IncreaseScore(){

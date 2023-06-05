@@ -12,12 +12,12 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1);
+        super(600, 400, 1,false);
         
         Water water = new Water();
-        addObject(water, 300, 500);
+        addObject(water, 300, 400);
         Cat cat = new Cat ();
-        addObject(cat, 100, 250);
+        addObject(cat, 50, 250);
         Coin coin1 = new Coin();
         addObject(coin1, 440, 310);
         Coin coin2 = new Coin();
@@ -53,5 +53,8 @@ public class MyWorld extends World
         RightBarrier rightBarrier = new RightBarrier(5,height-10,90);
         addObject(leftBarrier, x-width/2, y);
         addObject(rightBarrier, x+width/2, y);
+    }
+    public void toNext(){
+        Greenfoot.setWorld(new GameTwo());
     }
 }
