@@ -31,6 +31,8 @@ public class GameTwo extends World
         Ground1 ground14 = new Ground1();
         addObject(ground14, 600, 400);
         createBar(ground14);
+        Enemy enemy = new Enemy();
+        addObject(enemy, 200, 100);
         
         coinLabel = new Label(score,50);
         addObject(coinLabel, 50, 50);
