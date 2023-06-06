@@ -22,6 +22,12 @@ public class Heart extends Actor
             heart[i] = new GreenfootImage("images/heart/heart" + i + ".png");
             heart[i].scale(112, 36);
         }
-        setImage(heart[6-heartLeft]);
+        if (heartLeft < 0){
+            setImage(heart[6]);
+        }else if (heartLeft > 6){
+            setImage(heart[0]);
+        }else{
+            setImage(heart[6-heartLeft]);
+        }
     }
 }

@@ -80,5 +80,4 @@ public class MyWorld extends World
     public void toNext(){
         Greenfoot.setWorld(new GameTwo());
     }
-    
 }

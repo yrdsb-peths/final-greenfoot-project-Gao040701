@@ -17,8 +17,6 @@ public class GameTwo extends World
         
         Water water = new Water();
         addObject(water, 300, 400);
-        Cat cat = new Cat ();
-        addObject(cat, 10, 250);
         Ground1 ground11 = new Ground1();
         addObject(ground11, 0, 350);
         createBar(ground11);
@@ -28,6 +26,8 @@ public class GameTwo extends World
         Ground1 ground13 = new Ground1();
         addObject(ground13, 400, 190);
         createBar(ground13);
+        ThornsSmall thornsSmall = new ThornsSmall();
+        addObject(thornsSmall, 400, 90);
         Ground1 ground14 = new Ground1();
         addObject(ground14, 600, 400);
         createBar(ground14);
@@ -38,6 +38,9 @@ public class GameTwo extends World
         addObject(coinLabel, 50, 50);
         Heart heart = new Heart(heartVal);
         addObject(heart, 80, 100);
+        
+        Cat cat = new Cat ();
+        addObject(cat, 10, 250);
     }
     public void IncreaseScore(){
         score++;
@@ -64,5 +67,29 @@ public class GameTwo extends World
     public void setHeart(int heartLeft){
         Heart heart = new Heart(heartLeft);
         addObject(heart, 80, 100);
+    }
+    public void addBubble(int x, int y){
+        TextBubble bubble = new TextBubble();
+        addObject(bubble, x, y);
+    }
+    public void removeBubble(){
+        removeObjects(getObjects(TextBubble.class));
+    }
+    public void addCharacter(Actor actor){
+        addObject(actor, 100, 400);
+    }
+    public void addTextBox(TextBox box){
+        addObject(box, 300, 300);
+    }
+    public void removeTextBox(TextBox box){
+        removeObjects(getObjects(TextBox.class));
+    }
+    public void addText(Label label){
+        addObject(label, 300, 300);
+    }
+    public void removeLabel(){
+        removeObjects(getObjects(Label.class));
+        coinLabel = new Label(score,50);
+        addObject(coinLabel, 50, 50);
     }
 }

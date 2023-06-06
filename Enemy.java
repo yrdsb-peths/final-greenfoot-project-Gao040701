@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Angela
  * @version 06/06/2023
  */
-public class Enemy extends Actor
+public class Enemy extends Hurt
 {
     GreenfootImage[] enemy = new GreenfootImage[3];
     SimpleTimer animationTimer = new SimpleTimer();
@@ -23,6 +23,7 @@ public class Enemy extends Actor
     public void act(){
         animateEnemy();
         constantMove();
+        super.removeCat(1);
     }
     public void animateEnemy()
     {
@@ -38,7 +39,7 @@ public class Enemy extends Actor
     public void constantMove(){
         setLocation(getX(),getY() + fadeAmount);
         volume += fadeAmount;
-        if (volume <= 0 || volume >= 100){
+        if (volume <= 0 || volume >= 130){
             fadeAmount = -fadeAmount;
         }
     }
