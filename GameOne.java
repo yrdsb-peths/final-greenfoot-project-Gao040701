@@ -6,14 +6,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Angela 
  * @version 05/30/2023
  */
-public class MyWorld extends World
+public class GameOne extends World
 {
-    static int score = 0;
-    static int heartVal = 6;
+    private int score = 0;
+    private int heartVal = 6;
     Label coinLabel;
-    public MyWorld()
+    public GameOne()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1,false);
         score = 0;
         heartVal = 6;
@@ -50,11 +49,13 @@ public class MyWorld extends World
         Cat cat = new Cat ();
         addObject(cat, 50, 250);
     }
+    
     public void act(){
         if (heartVal <= 0){
             Greenfoot.setWorld(new GameOver());
         }
     }
+    
     public void IncreaseScore(){
         score++;
         coinLabel.setValue(score);
@@ -70,6 +71,10 @@ public class MyWorld extends World
         addObject(leftBarrier, x-width/2, y);
         addObject(rightBarrier, x+width/2, y);
     }
+    
+    public int getHeartVal(){
+        return heartVal;
+    }
     public void minusHeartVal(int val){
         heartVal -= val;
     }
@@ -77,8 +82,8 @@ public class MyWorld extends World
         Heart heart = new Heart(heartLeft);
         addObject(heart, 80, 100);
     }
-    public void toNext(){
-        Greenfoot.setWorld(new GameTwo());
-    }
     
+    public void toNextTwo(){
+        Greenfoot.setWorld(new GameTwo(score, heartVal));
+    }
 }
