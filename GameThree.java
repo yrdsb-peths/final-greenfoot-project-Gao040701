@@ -58,4 +58,9 @@ public class GameThree extends World
         Heart heart = new Heart(heartLeft);
         addObject(heart, 80, 100);
     }
+    public void showBackPack(){
+        if (Greenfoot.isKeyDown("b")){
+            
+        }
+    }
 }
