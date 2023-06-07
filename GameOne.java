@@ -45,9 +45,12 @@ public class GameOne extends World
         addObject(coinLabel, 50, 50);
         Heart heart = new Heart(heartVal);
         addObject(heart, 80, 100);
+        BackPack backPack = new BackPack();
+        addObject(backPack, 600, 400);
         
         Cat cat = new Cat ();
         addObject(cat, 50, 250);
+        
     }
     
     public void act(){

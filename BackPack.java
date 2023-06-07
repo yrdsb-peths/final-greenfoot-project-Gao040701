@@ -12,7 +12,13 @@ public class BackPack extends Actor
     ArrayList<Objects> backPack = new ArrayList<Objects>();
     public void act()
     {
-        // Add your action code here.
+        if (Greenfoot.isKeyDown("b")){
+            show();
+            Greenfoot.getKey();
+        }
+        if (Greenfoot.isKeyDown("a")){
+            addList(new Apple(2));
+        }
     }
     public void addList(Objects obj){
         backPack.add(obj);
@@ -21,12 +27,13 @@ public class BackPack extends Actor
         int index = backPack.indexOf(obj);
         backPack.remove(index);
     }
-    /*
     public void show(){
         for (int i = 0; i < backPack.size(); i++){
-            if (i%4 == 0){
-                
-            }
+            getWorld().addObject(backPack.get(i), 225 +i%4*50, 175+i/4*50);
+            System.out.println(i);
         }
-    }*/
+    }
+    public void stopShow(){
+        
+    }
 }

@@ -59,6 +59,7 @@ public class Cat extends Actor
         Next();
     }
     
+    
     public void animateCat(){
         if (animationTimer.millisElapsed() < 100){
             return;

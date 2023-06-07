@@ -10,7 +10,7 @@ public class Apple extends Objects
 {
     public void act()
     {
-        // Add your action code here.
+        
     }
     
     public Apple(){
