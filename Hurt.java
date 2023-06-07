@@ -12,10 +12,10 @@ public class Hurt extends Actor
     public void removeCat(int heartLost){
         if (isTouching(Cat.class)){
             removeTouching(Cat.class);
-            if (getWorld() instanceof MyWorld){
-                MyWorld world = (MyWorld) getWorld();
+            if (getWorld() instanceof GameOne){
+                GameOne world = (GameOne) getWorld();
                 world.minusHeartVal(heartLost);
-                heartVal = world.heartVal; 
+                heartVal = world.getHeartVal(); 
                 world.removeObjects(world.getObjects(Heart.class));
                 world.setHeart(heartVal);
                 if (heartVal > 0){
@@ -25,7 +25,7 @@ public class Hurt extends Actor
             }else if (getWorld() instanceof GameTwo){
                 GameTwo world = (GameTwo) getWorld();
                 world.minusHeartVal(heartLost);
-                heartVal = world.heartVal; 
+                heartVal = world.getHeartVal(); 
                 world.removeObjects(world.getObjects(Heart.class));
                 world.setHeart(heartVal);
                 if (heartVal > 0){

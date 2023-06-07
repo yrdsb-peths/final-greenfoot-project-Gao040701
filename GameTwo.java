@@ -2,18 +2,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Game Two scene 
+ * meet Thorns 
  * 
  * @author Angela  
  * @version 06/05/2023
  */
 public class GameTwo extends World
 {
-    static int score = MyWorld.score;
-    int heartVal = MyWorld.heartVal;
+    private int score;
+    private int heartVal;
     Label coinLabel;
-    public GameTwo()
+    public GameTwo(int score, int heartVal)
     {
         super(600, 400, 1,false); 
+        
+        this.score = score;
+        this.heartVal = heartVal;
         
         Water water = new Water();
         addObject(water, 300, 400);
@@ -61,6 +65,10 @@ public class GameTwo extends World
         addObject(leftBarrier, x-width/2, y);
         addObject(rightBarrier, x+width/2, y);
     }
+    
+    public int getHeartVal(){
+        return heartVal;
+    }
     public void minusHeartVal(int val){
         heartVal -= val;
     }
@@ -78,6 +86,9 @@ public class GameTwo extends World
     public void addCharacter(Actor actor){
         addObject(actor, 100, 400);
     }
+    public void removeCharacter(){
+        removeObjects(getObjects(Speakers.class));
+    }
     public void addTextBox(TextBox box){
         addObject(box, 300, 300);
     }
@@ -91,5 +102,8 @@ public class GameTwo extends World
         removeObjects(getObjects(Label.class));
         coinLabel = new Label(score,50);
         addObject(coinLabel, 50, 50);
+    }
+    public void toNextThree(){
+        Greenfoot.setWorld(new GameThree(score, heartVal));
     }
 }

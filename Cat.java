@@ -59,9 +59,6 @@ public class Cat extends Actor
         Next();
     }
     
-    /**
-     * set animation for jump, run, and stand still
-     */
     public void animateCat(){
         if (animationTimer.millisElapsed() < 100){
             return;
@@ -130,7 +127,7 @@ public class Cat extends Actor
     public void getCoin(){
         if (isTouching(Coin.class)){
             removeTouching(Coin.class);
-            MyWorld world = (MyWorld) getWorld();
+            GameOne world = (GameOne) getWorld();
             world.IncreaseScore();
         }
     }
@@ -140,14 +137,20 @@ public class Cat extends Actor
             setLocation(getX()-3,getY());
         }else if (isTouching(RightBarrier.class)){
             setLocation(getX()+3,getY());
+        }else if (isTouching(BottomBarrier.class)){
+            setLocation(getX(), getY()-dy*2);
         }
     }
     
     public void Next(){
         if(getX() >= 600){
-            if (getWorld().getClass().getName().equals("MyWorld")){
-                MyWorld world = (MyWorld) getWorld();
-                world.toNext();
+            if (getWorld().getClass().getName().equals("GameOne")){
+                GameOne world = (GameOne) getWorld();
+                world.toNextTwo();
+            }
+            if (getWorld().getClass().getName().equals("GameTwo")){
+                GameTwo world = (GameTwo) getWorld();
+                world.toNextThree();
             }
         }
     }
