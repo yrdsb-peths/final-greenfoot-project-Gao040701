@@ -32,6 +32,16 @@ public class Hurt extends Actor
                     Cat cat = new Cat();
                     world.addObject(cat, 50, 250);
                 }
+            }else if (getWorld() instanceof Random){
+                Random world = (Random) getWorld();
+                world.minusHeartVal(heartLost);
+                heartVal = world.getHeartVal(); 
+                world.removeObjects(world.getObjects(Heart.class));
+                world.setHeart(heartVal);
+                if (heartVal > 0){
+                    Cat cat = new Cat();
+                    world.addObject(cat, 50, 250);
+                }
             }
         }
     }

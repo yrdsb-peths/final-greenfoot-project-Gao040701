@@ -127,8 +127,13 @@ public class Cat extends Actor
     public void getCoin(){
         if (isTouching(Coin.class)){
             removeTouching(Coin.class);
-            GameOne world = (GameOne) getWorld();
-            world.IncreaseScore();
+            if (getWorld() instanceof GameOne){
+                GameOne world = (GameOne) getWorld();
+                world.IncreaseScore();
+            }else{
+                Random world = (Random) getWorld();
+                world.IncreaseScore();
+            }
         }
     }
     
@@ -151,6 +156,10 @@ public class Cat extends Actor
             if (getWorld().getClass().getName().equals("GameTwo")){
                 GameTwo world = (GameTwo) getWorld();
                 world.toNextThree();
+            }
+            if (getWorld().getClass().getName().equals("Random")){
+                Random world = (Random) getWorld();
+                world.resetWorld();
             }
         }
     }
