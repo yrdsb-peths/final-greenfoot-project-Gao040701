@@ -18,11 +18,20 @@ public class ThornsSmall extends Speakers
         setImage(thornsSmall);
     }
     public void createBubble(){
-        GameTwo world = (GameTwo) getWorld();
-        if (isTouching(Cat.class)){
-            world.addBubble(380, 60);
+        if (getWorld() instanceof GameTwo){
+            GameTwo world = (GameTwo) getWorld();
+            if (isTouching(Cat.class)){
+                world.addObject(new TextBubble(), 380, 60);
+            }else{
+                world.removeObjects(world.getObjects(TextBubble.class));
+            }
         }else{
-            world.removeBubble();
+            Random world = (Random) getWorld();
+            if (isTouching(Cat.class)){
+                world.addObject(new TextBubble(), getX()-20, getY()-30);
+            }else{
+                world.removeObjects(world.getObjects(TextBubble.class));
+            }
         }
     }
 }

@@ -39,7 +39,7 @@ public class Enemy extends Hurt
     public void constantMove(){
         setLocation(getX(),getY() + fadeAmount);
         volume += fadeAmount;
-        if (volume <= 0 || volume >= 130){
+        if (volume <= 0 || volume >= 300){
             fadeAmount = -fadeAmount;
         }
     }

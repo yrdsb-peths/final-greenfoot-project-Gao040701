@@ -8,13 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Random extends World
 {
+    int level = 0;
     int x = 100;
     int y = 400;
     int changeX;
     int changeY;
     int addX;
     int addY;
-    int games;
+    int games = 1;
     private int score = 0;
     private int heartVal = 6;
     Label coinLabel;
@@ -47,10 +48,10 @@ public class Random extends World
         while (x < 550){
             int num = Greenfoot.getRandomNumber(2);
             if (num == 0){
-                addX =  60;
+                addX =  80;
                 addY = 40;
             }else{
-                addX = 100;
+                addX = 120;
                 addY = 60;
             }
             if (Greenfoot.getRandomNumber(2) == 0){
@@ -75,6 +76,11 @@ public class Random extends World
                 }
             }else{
                 createWithBar(new Ground1(), x, y);
+                if (Greenfoot.getRandomNumber(10) <= level){
+                    addObject(new Enemy(), x, y - 180);
+                }else if (Greenfoot.getRandomNumber(10) == 0){
+                    addObject(new ThornsSmall(), x, y - 100);
+                }
             }
         }
     }
@@ -111,6 +117,13 @@ public class Random extends World
         score++;
         coinLabel.setValue(score);
     }
+    public void DecreaseScore(int num){
+        score-= num;
+        coinLabel.setValue(score);
+    }
+    public int getScore(){
+        return score;
+    }
     public void setGameNumLabel(){
         gameNumLabel.setValue(games);
     }
@@ -127,11 +140,15 @@ public class Random extends World
     }
     public void resetWorld(){
         games++;
+        if (games % 10 == 0){
+            level++;
+        }
         setGameNumLabel();
         removeObjects(getObjects(Solids.class));
         removeObjects(getObjects(Barrier.class));
         removeObjects(getObjects(Cat.class));
         removeObjects(getObjects(Coin.class));
+        removeObjects(getObjects(Enemy.class));
         x = 100;
         y = 400;
         
@@ -142,5 +159,24 @@ public class Random extends World
         
         Cat cat = new Cat();
         addObject(cat, 50, 250);
+    }
+    public void removeLabel(){
+        removeObjects(getObjects(Label.class));
+        coinLabel = new Label(score,50);
+        addObject(coinLabel, 50, 50);
+        gameNumLabel = new Label(games, 70);
+        addObject(gameNumLabel, 300, 70);
+    }
+    public void removeCharacter(){
+        removeObjects(getObjects(Speakers.class));
+    }
+    public void removeBubble(){
+        removeObjects(getObjects(TextBubble.class));
+    }
+    public void addText(Label label){
+        addObject(label, 300, 300);
+    }
+    public void removeTextBox(TextBox box){
+        removeObjects(getObjects(TextBox.class));
     }
 }
