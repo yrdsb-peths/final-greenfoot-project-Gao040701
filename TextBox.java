@@ -90,8 +90,8 @@ public class TextBox extends Actor
                 }
             }
             if (Greenfoot.mouseClicked(yes)){
-                if (world.getScore() >= 2){
-                    world.DecreaseScore(2);
+                if (world.getScore() >= 5){
+                    world.DecreaseScore(5);
                     world.minusHeartVal(-2);
                     heartVal = world.getHeartVal(); 
                     world.removeObjects(world.getObjects(Heart.class));
@@ -125,7 +125,7 @@ public class TextBox extends Actor
         thornsOne.add("Hello, little warrior.");
         thornsOne.add("I am Thorns and I will help you \n in your future advanture.");
         thornsOne.add("You can pay me 5 coins to get 1 heart.");
-        thornsOne.add("You only need to pay me 2 coins this time");
+        thornsOne.add("You only need to pay me 2 coins this time.");
     }
     public void addTextTwo(){
         thornsTwo.add("Hello, nice to see you again. ");
