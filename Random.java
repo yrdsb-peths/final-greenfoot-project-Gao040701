@@ -21,6 +21,7 @@ public class Random extends World
     Label coinLabel;
     Label gameNumLabel;
     int previousNum;
+    int numThorns;
     public Random()
     {    
         super(600, 400, 1, false); 
@@ -29,6 +30,8 @@ public class Random extends World
         addObject(water, 300, 400);
         Ground1 ground1 = new Ground1();
         addObject (ground1, 40,370);
+        Ground1 ground2 = new Ground1();
+        addObject (ground2, 600,370);
         
         randomCreate();
         
@@ -45,7 +48,8 @@ public class Random extends World
     }
     public void randomCreate(){
         //larger gap if a ground is created. smaller when a cloud 
-        while (x < 550){
+        numThorns = 0;
+        while (x < 440){
             int num = Greenfoot.getRandomNumber(2);
             if (num == 0){
                 addX =  80;
@@ -78,8 +82,9 @@ public class Random extends World
                 createWithBar(new Ground1(), x, y);
                 if (Greenfoot.getRandomNumber(10) <= level){
                     addObject(new Enemy(), x, y - 180);
-                }else if (Greenfoot.getRandomNumber(10) == 0){
+                }else if (Greenfoot.getRandomNumber(15) == 0 && numThorns == 0){
                     addObject(new ThornsSmall(), x, y - 100);
+                    numThorns = 1;
                 }
             }
         }
@@ -101,8 +106,8 @@ public class Random extends World
         int y = solid.getY();
         int height = solid.getImage().getHeight();
         int width = solid.getImage().getWidth();
-        LeftBarrier leftBarrier = new LeftBarrier(5,height-5,90);
-        RightBarrier rightBarrier = new RightBarrier(5,height-5,90);
+        LeftBarrier leftBarrier = new LeftBarrier(5,height-2,90);
+        RightBarrier rightBarrier = new RightBarrier(5,height-2,90);
         addObject(leftBarrier, x-width/2, y);
         addObject(rightBarrier, x+width/2, y);
     }
@@ -149,11 +154,15 @@ public class Random extends World
         removeObjects(getObjects(Cat.class));
         removeObjects(getObjects(Coin.class));
         removeObjects(getObjects(Enemy.class));
+        removeObjects(getObjects(Speakers.class));
+        removeObjects(getObjects(TextBubble.class));
         x = 100;
         y = 400;
         
         Ground1 ground1 = new Ground1();
         addObject (ground1, 40,370);
+        Ground1 ground2 = new Ground1();
+        addObject (ground2, 600,370);
         
         randomCreate();
         
