@@ -59,7 +59,7 @@ public class GameTwo extends World
     }
     public void act(){
         if (heartVal <= 0){
-            Greenfoot.setWorld(new GameOver());
+            Greenfoot.setWorld(new GameOver(0));
         }
     }
     public void createBar(Solids solid){
@@ -105,6 +105,6 @@ public class GameTwo extends World
         addObject(coinLabel, 50, 50);
     }
     public void toNextThree(){
-        Greenfoot.setWorld(new GameThree(score, heartVal));
+        Greenfoot.setWorld(new GameOver(0));
     }
 }

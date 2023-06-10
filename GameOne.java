@@ -52,7 +52,7 @@ public class GameOne extends World
     
     public void act(){
         if (heartVal <= 0){
-            Greenfoot.setWorld(new GameOver());
+            Greenfoot.setWorld(new GameOver(0));
         }
     }
     

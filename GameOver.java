@@ -1,22 +1,23 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class GameOver here.
+ * Game Over scene
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Angela 
+ * @version 06/09/2023
  */
 public class GameOver extends World
 {
-
-    /**
-     * Constructor for objects of class GameOver.
-     * 
-     */
-    public GameOver()
+    int finalScore;
+    Label finalScoreLabel = new Label(finalScore, 70);
+    public GameOver(int finalScore)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        
+        this.finalScore = finalScore;
+        finalScoreLabel.setValue(finalScore);
+        addObject(finalScoreLabel, 300, 150);
     }
     public void act(){
         restart();

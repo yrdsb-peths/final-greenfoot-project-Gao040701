@@ -22,6 +22,7 @@ public class Random extends World
     Label gameNumLabel;
     int previousNum;
     int numThorns;
+    public int finalScore;
     public Random()
     {    
         super(600, 400, 1, false); 
@@ -114,8 +115,13 @@ public class Random extends World
     
     public void act(){
         if (heartVal <= 0){
-            Greenfoot.setWorld(new GameOver());
+            finalScore = getFinalScore();
+            Greenfoot.setWorld(new GameOver(finalScore));
         }
+    }
+    
+    public int getFinalScore(){
+        return (score + games) * 10;
     }
     
     public void IncreaseScore(){
