@@ -16,19 +16,13 @@ public class TitleScreen extends World
         
         titleScreen.scale(600, 400);
         setBackground(titleScreen);
+        
+        StartButton startButton = new StartButton();
+        addObject(startButton, 300, 300);
+        TutorialButton tutorialButton = new TutorialButton();
+        addObject(tutorialButton, 150, 300);
     }
     public void act(){
-        Tutorial();
-        Game();
-    }
-    public void Tutorial(){
-        if (Greenfoot.isKeyDown("space")){
-            Greenfoot.setWorld(new GameOne());
-        }
-    }
-    public void Game(){
-        if (Greenfoot.isKeyDown("enter")){
-            Greenfoot.setWorld(new Random());
-        }
+        
     }
 }

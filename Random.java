@@ -30,9 +30,9 @@ public class Random extends World
         Water water = new Water();
         addObject(water, 300, 400);
         Ground1 ground1 = new Ground1();
-        addObject (ground1, 40,370);
+        createWithBar (ground1, 40,370);
         Ground1 ground2 = new Ground1();
-        addObject (ground2, 600,370);
+        createWithBar (ground2, 600,370);
         
         randomCreate();
         
@@ -42,6 +42,8 @@ public class Random extends World
         addObject(heart, 80, 100);
         gameNumLabel = new Label(games, 70);
         addObject(gameNumLabel, 300, 70);
+        ExistGameButton exit = new ExistGameButton();
+        addObject(exit, 575, 375);
         
         Cat cat = new Cat();
         addObject(cat, 50, 250);
@@ -166,9 +168,11 @@ public class Random extends World
         y = 400;
         
         Ground1 ground1 = new Ground1();
-        addObject (ground1, 40,370);
+        createWithBar (ground1, 40,370);
         Ground1 ground2 = new Ground1();
-        addObject (ground2, 600,370);
+        createWithBar (ground2, 600,370);
+        ExistGameButton exit = new ExistGameButton();
+        addObject(exit, 575, 375);
         
         randomCreate();
         

@@ -17,6 +17,9 @@ public class Cat extends Actor
     GreenfootImage[] runRightImages = new GreenfootImage[12];
     GreenfootImage[] runLeftImages = new GreenfootImage[12];
     
+    GreenfootSound getCoin = new GreenfootSound("getCoin.mp3");
+    GreenfootSound jumpSound = new GreenfootSound("jumpSound.mp3");
+    
     SimpleTimer animationTimer = new SimpleTimer();
     boolean facingRight = true;
     
@@ -91,6 +94,7 @@ public class Cat extends Actor
     
     public void move(){
         if (Greenfoot.isKeyDown("Up")&& isTouching(Solids.class)){
+            jumpSound.play();
             dy = -15; 
             setLocation(getX(), getY() + dy); 
             Greenfoot.getKey();
@@ -126,6 +130,7 @@ public class Cat extends Actor
     
     public void getCoin(){
         if (isTouching(Coin.class)){
+            getCoin.play();
             removeTouching(Coin.class);
             if (getWorld() instanceof GameOne){
                 GameOne world = (GameOne) getWorld();

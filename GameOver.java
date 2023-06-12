@@ -12,19 +12,18 @@ public class GameOver extends World
     Label finalScoreLabel = new Label(finalScore, 70);
     public GameOver(int finalScore)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         
         this.finalScore = finalScore;
         finalScoreLabel.setValue(finalScore);
         addObject(finalScoreLabel, 300, 150);
+        
+        HomeButton homeButton = new HomeButton();
+        addObject(homeButton, 200, 300);
+        NewGameButton newGame = new NewGameButton();
+        addObject(newGame, 400, 300);
     }
     public void act(){
-        restart();
-    }
-    public void restart(){
-        if (Greenfoot.isKeyDown("shift")){
-            Greenfoot.setWorld(new TitleScreen());
-        }
+        
     }
 }
