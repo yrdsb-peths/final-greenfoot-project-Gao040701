@@ -9,8 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Hurt extends Actor
 {
     static int heartVal;
+    GreenfootSound hurtSound = new GreenfootSound ("hurtSound.mp3");
     public void removeCat(int heartLost){
         if (isTouching(Cat.class)){
+            hurtSound.play();
             removeTouching(Cat.class);
             if (getWorld() instanceof GameOne){
                 GameOne world = (GameOne) getWorld();

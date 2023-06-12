@@ -50,9 +50,16 @@ public class GameTwo extends World
         score++;
         coinLabel.setValue(score);
     }
+    public void DecreaseScore(int num){
+        score-= num;
+        coinLabel.setValue(score);
+    }
+    public int getScore(){
+        return score;
+    }
     public void act(){
         if (heartVal <= 0){
-            Greenfoot.setWorld(new GameOver());
+            Greenfoot.setWorld(new GameOver(0));
         }
     }
     public void createBar(Solids solid){
@@ -83,14 +90,8 @@ public class GameTwo extends World
     public void removeBubble(){
         removeObjects(getObjects(TextBubble.class));
     }
-    public void addCharacter(Actor actor){
-        addObject(actor, 100, 400);
-    }
     public void removeCharacter(){
         removeObjects(getObjects(Speakers.class));
-    }
-    public void addTextBox(TextBox box){
-        addObject(box, 300, 300);
     }
     public void removeTextBox(TextBox box){
         removeObjects(getObjects(TextBox.class));
@@ -104,6 +105,6 @@ public class GameTwo extends World
         addObject(coinLabel, 50, 50);
     }
     public void toNextThree(){
-        Greenfoot.setWorld(new GameThree(score, heartVal));
+        Greenfoot.setWorld(new GameOver(0));
     }
 }

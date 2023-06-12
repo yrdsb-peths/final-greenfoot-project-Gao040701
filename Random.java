@@ -8,18 +8,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Random extends World
 {
+    int level = 0;
     int x = 100;
     int y = 400;
     int changeX;
     int changeY;
     int addX;
     int addY;
-    int games;
+    int games = 1;
     private int score = 0;
     private int heartVal = 6;
     Label coinLabel;
     Label gameNumLabel;
     int previousNum;
+    int numThorns;
+    public int finalScore;
     public Random()
     {    
         super(600, 400, 1, false); 
@@ -27,7 +30,9 @@ public class Random extends World
         Water water = new Water();
         addObject(water, 300, 400);
         Ground1 ground1 = new Ground1();
-        addObject (ground1, 40,370);
+        createWithBar (ground1, 40,370);
+        Ground1 ground2 = new Ground1();
+        createWithBar (ground2, 600,370);
         
         randomCreate();
         
@@ -37,6 +42,8 @@ public class Random extends World
         addObject(heart, 80, 100);
         gameNumLabel = new Label(games, 70);
         addObject(gameNumLabel, 300, 70);
+        ExistGameButton exit = new ExistGameButton();
+        addObject(exit, 575, 375);
         
         Cat cat = new Cat();
         addObject(cat, 50, 250);
@@ -44,13 +51,14 @@ public class Random extends World
     }
     public void randomCreate(){
         //larger gap if a ground is created. smaller when a cloud 
-        while (x < 550){
+        numThorns = 0;
+        while (x < 440){
             int num = Greenfoot.getRandomNumber(2);
             if (num == 0){
-                addX =  60;
+                addX =  80;
                 addY = 40;
             }else{
-                addX = 100;
+                addX = 120;
                 addY = 60;
             }
             if (Greenfoot.getRandomNumber(2) == 0){
@@ -75,6 +83,12 @@ public class Random extends World
                 }
             }else{
                 createWithBar(new Ground1(), x, y);
+                if (Greenfoot.getRandomNumber(10) <= level){
+                    addObject(new Enemy(), x, y - 180);
+                }else if (Greenfoot.getRandomNumber(15) == 0 && numThorns == 0){
+                    addObject(new ThornsSmall(), x, y - 100);
+                    numThorns = 1;
+                }
             }
         }
     }
@@ -95,21 +109,33 @@ public class Random extends World
         int y = solid.getY();
         int height = solid.getImage().getHeight();
         int width = solid.getImage().getWidth();
-        LeftBarrier leftBarrier = new LeftBarrier(5,height-5,90);
-        RightBarrier rightBarrier = new RightBarrier(5,height-5,90);
+        LeftBarrier leftBarrier = new LeftBarrier(5,height-2,90);
+        RightBarrier rightBarrier = new RightBarrier(5,height-2,90);
         addObject(leftBarrier, x-width/2, y);
         addObject(rightBarrier, x+width/2, y);
     }
     
     public void act(){
         if (heartVal <= 0){
-            Greenfoot.setWorld(new GameOver());
+            finalScore = getFinalScore();
+            Greenfoot.setWorld(new GameOver(finalScore));
         }
+    }
+    
+    public int getFinalScore(){
+        return (score + games) * 10;
     }
     
     public void IncreaseScore(){
         score++;
         coinLabel.setValue(score);
+    }
+    public void DecreaseScore(int num){
+        score-= num;
+        coinLabel.setValue(score);
+    }
+    public int getScore(){
+        return score;
     }
     public void setGameNumLabel(){
         gameNumLabel.setValue(games);
@@ -127,20 +153,49 @@ public class Random extends World
     }
     public void resetWorld(){
         games++;
+        if (games % 10 == 0){
+            level++;
+        }
         setGameNumLabel();
         removeObjects(getObjects(Solids.class));
         removeObjects(getObjects(Barrier.class));
         removeObjects(getObjects(Cat.class));
         removeObjects(getObjects(Coin.class));
+        removeObjects(getObjects(Enemy.class));
+        removeObjects(getObjects(Speakers.class));
+        removeObjects(getObjects(TextBubble.class));
         x = 100;
         y = 400;
         
         Ground1 ground1 = new Ground1();
-        addObject (ground1, 40,370);
+        createWithBar (ground1, 40,370);
+        Ground1 ground2 = new Ground1();
+        createWithBar (ground2, 600,370);
+        ExistGameButton exit = new ExistGameButton();
+        addObject(exit, 575, 375);
         
         randomCreate();
         
         Cat cat = new Cat();
         addObject(cat, 50, 250);
+    }
+    public void removeLabel(){
+        removeObjects(getObjects(Label.class));
+        coinLabel = new Label(score,50);
+        addObject(coinLabel, 50, 50);
+        gameNumLabel = new Label(games, 70);
+        addObject(gameNumLabel, 300, 70);
+    }
+    public void removeCharacter(){
+        removeObjects(getObjects(Speakers.class));
+    }
+    public void removeBubble(){
+        removeObjects(getObjects(TextBubble.class));
+    }
+    public void addText(Label label){
+        addObject(label, 300, 300);
+    }
+    public void removeTextBox(TextBox box){
+        removeObjects(getObjects(TextBox.class));
     }
 }

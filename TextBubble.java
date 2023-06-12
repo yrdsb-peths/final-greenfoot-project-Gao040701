@@ -14,11 +14,8 @@ public class TextBubble extends Actor
     }
     public void startText(){
         if (Greenfoot.mouseClicked(this)){
-            GameTwo world = (GameTwo) getWorld();
-            Thorns thorns = new Thorns();
-            world.addCharacter(thorns);
-            TextBox box = new TextBox();
-            world.addTextBox(box);
+            getWorld().addObject(new Thorns(), 100, 400);
+            getWorld().addObject(new TextBox(), 300, 300);
         }
     }
     
