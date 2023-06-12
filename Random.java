@@ -167,14 +167,14 @@ public class Random extends World
         x = 100;
         y = 400;
         
+        randomCreate();
+        
         Ground1 ground1 = new Ground1();
         createWithBar (ground1, 40,370);
         Ground1 ground2 = new Ground1();
         createWithBar (ground2, 600,370);
         ExistGameButton exit = new ExistGameButton();
         addObject(exit, 575, 375);
-        
-        randomCreate();
         
         Cat cat = new Cat();
         addObject(cat, 50, 250);
