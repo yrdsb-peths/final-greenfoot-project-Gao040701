@@ -10,18 +10,22 @@ public class GameOver extends World
 {
     int finalScore;
     Label finalScoreLabel = new Label(finalScore, 70);
+    GreenfootImage gameOverScreen = new GreenfootImage("images/gameOverScreen.png");
     public GameOver(int finalScore)
     {    
         super(600, 400, 1); 
         
+        gameOverScreen.scale(600, 400);
+        setBackground(gameOverScreen);
+        
         this.finalScore = finalScore;
         finalScoreLabel.setValue(finalScore);
-        addObject(finalScoreLabel, 300, 150);
+        addObject(finalScoreLabel, 380, 220);
         
         HomeButton homeButton = new HomeButton();
-        addObject(homeButton, 200, 300);
+        addObject(homeButton, 200, 330);
         NewGameButton newGame = new NewGameButton();
-        addObject(newGame, 400, 300);
+        addObject(newGame, 400, 330);
     }
     public void act(){
         
