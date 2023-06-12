@@ -21,6 +21,8 @@ public class TitleScreen extends World
         addObject(startButton, 300, 300);
         TutorialButton tutorialButton = new TutorialButton();
         addObject(tutorialButton, 150, 300);
+        InstructionButton instruc = new InstructionButton();
+        addObject(instruc, 450, 300);
     }
     public void act(){
         
