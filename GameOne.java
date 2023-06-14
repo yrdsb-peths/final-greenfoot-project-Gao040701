@@ -49,7 +49,7 @@ public class GameOne extends World
         Cat cat = new Cat ();
         addObject(cat, 50, 250);
         
-        FireBall fireBall = new FireBall();
+        FireBall fireBall = new FireBall(2);
         addObject(fireBall, 300, 0);
     }
     

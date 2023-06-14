@@ -90,6 +90,11 @@ public class Random extends World
                     numThorns = 1;
                 }
             }
+            for (int i = 0; i < level; i++){
+                if (Greenfoot.getRandomNumber(10) < 2){
+                    addObject(new FireBall(level), Greenfoot.getRandomNumber(600), 0);
+                }
+            }
         }
     }
     public void randomPositionPos(){
@@ -153,7 +158,7 @@ public class Random extends World
     }
     public void resetWorld(){
         games++;
-        if (games % 10 == 0){
+        if (games % 5 == 0){
             level++;
         }
         setGameNumLabel();
@@ -164,6 +169,7 @@ public class Random extends World
         removeObjects(getObjects(Enemy.class));
         removeObjects(getObjects(Speakers.class));
         removeObjects(getObjects(TextBubble.class));
+        removeObjects(getObjects(FireBall.class));
         x = 100;
         y = 400;
         
