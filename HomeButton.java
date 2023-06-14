@@ -10,6 +10,7 @@ public class HomeButton extends Actor
 {
     GreenfootImage home1 = new GreenfootImage("images/buttons/home1.png");
     GreenfootImage home2 = new GreenfootImage("images/buttons/home2.png");
+    GreenfootSound click = new GreenfootSound("clickSound.mp3");
     public void act()
     {
         if (Greenfoot.mouseMoved(this)){
@@ -18,6 +19,7 @@ public class HomeButton extends Actor
             setImage(home1);
         }
         if (Greenfoot.mouseClicked(this)){
+            click.play();
             Greenfoot.setWorld(new TitleScreen());
         }
     }

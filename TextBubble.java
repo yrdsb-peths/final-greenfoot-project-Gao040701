@@ -7,13 +7,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TextBubble extends Actor
 {
-    
+    GreenfootSound click = new GreenfootSound("clickSound.mp3");
     public void act()
     {
         startText();
     }
     public void startText(){
         if (Greenfoot.mouseClicked(this)){
+            click.play();
             getWorld().addObject(new Thorns(), 100, 400);
             getWorld().addObject(new TextBox(), 300, 300);
         }

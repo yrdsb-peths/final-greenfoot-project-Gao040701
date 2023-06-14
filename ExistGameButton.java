@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class ExistGameButton extends Actor
 {
     GreenfootImage exit = new GreenfootImage("images/buttons/exit.png");
+    GreenfootSound click = new GreenfootSound("clickSound.mp3");
     int finalScore;
     public void act()
     {
@@ -18,6 +19,7 @@ public class ExistGameButton extends Actor
             exit.scale(50,50);
         }
         if (Greenfoot.mouseClicked(this)){
+            click.play();
             if (getWorld() instanceof Random){
                 Random world = (Random) getWorld();
                 finalScore = world.getFinalScore();

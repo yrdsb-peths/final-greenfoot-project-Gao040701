@@ -10,6 +10,7 @@ public class StartButton extends Actor
 {
     GreenfootImage startButton1 = new GreenfootImage("images/buttons/startButton1.png");
     GreenfootImage startButton2 = new GreenfootImage("images/buttons/startButton2.png");
+    GreenfootSound click = new GreenfootSound("clickSound.mp3");
     public void act()
     {
         if (Greenfoot.mouseMoved(this)){
@@ -18,6 +19,7 @@ public class StartButton extends Actor
             setImage(startButton1);
         }
         if (Greenfoot.mouseClicked(this)){
+            click.play();
             Greenfoot.setWorld(new Random());
         }
     }

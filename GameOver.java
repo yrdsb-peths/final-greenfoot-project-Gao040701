@@ -11,9 +11,12 @@ public class GameOver extends World
     int finalScore;
     Label finalScoreLabel = new Label(finalScore, 70);
     GreenfootImage gameOverScreen = new GreenfootImage("images/gameOverScreen.png");
+    GreenfootSound finishGame = new GreenfootSound("finishGame.mp3");
     public GameOver(int finalScore)
     {    
         super(600, 400, 1); 
+        
+        finishGame.play();
         
         gameOverScreen.scale(600, 400);
         setBackground(gameOverScreen);
