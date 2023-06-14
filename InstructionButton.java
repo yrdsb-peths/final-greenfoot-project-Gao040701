@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class InstructionButton extends Actor
 {
+    GreenfootSound click = new GreenfootSound("clickSound.mp3");
     GreenfootImage instruc1 = new GreenfootImage("images/buttons/instruction1.png");
     GreenfootImage instruc2 = new GreenfootImage("images/buttons/instruction2.png");
     public void act()
@@ -18,6 +19,7 @@ public class InstructionButton extends Actor
             setImage(instruc1);
         }
         if (Greenfoot.mouseClicked(this)){
+            click.play();
             Greenfoot.setWorld(new Instructions());
         }
     }

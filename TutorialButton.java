@@ -10,6 +10,8 @@ public class TutorialButton extends Actor
 {
     GreenfootImage tutorialButton1 = new GreenfootImage("images/buttons/tutorialButton1.png");
     GreenfootImage tutorialButton2 = new GreenfootImage("images/buttons/tutorialButton2.png");
+    GreenfootSound click = new GreenfootSound("clickSound.mp3");
+
     public void act()
     {
         if (Greenfoot.mouseMoved(this)){
@@ -18,6 +20,7 @@ public class TutorialButton extends Actor
             setImage(tutorialButton1);
         }
         if (Greenfoot.mouseClicked(this)){
+            click.play();
             Greenfoot.setWorld(new GameOne());
         }
     }
