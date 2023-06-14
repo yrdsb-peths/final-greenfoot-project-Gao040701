@@ -13,14 +13,10 @@ public class FireBall extends Hurt
     SimpleTimer animationTimer = new SimpleTimer();
     public void act()
     {
-        while (!isTouching(Solids.class) && !(getY() >= 400)){
-            setLocation(getX(), getY() + dy);
-            //dy+=0.5;
-        }
-        if (isTouching(Solids.class) || getY() >= 400){
-            setLocation(getX(), 0);
-            dy = 0;
-        }
+        animateFireBall();
+        move();
+        super.removeCat(2);
+        
     }
     public void FireBall(){
         for (int i = 0; i < fireBall.length; i++){
@@ -38,5 +34,15 @@ public class FireBall extends Hurt
         animationTimer.mark(); 
         imageIndex = (imageIndex + 1) % fireBall.length;
         setImage(fireBall[imageIndex]);
+    }
+    public void move(){
+        while (!isTouching(Solids.class) && !(getY() >= 400)){
+            setLocation(getX(), getY() + dy);
+            dy+=0.5;
+        }
+        if (isTouching(Solids.class) || getY() >= 400){
+            setLocation(getX(), 0);
+            dy = 0;
+        }
     }
 }
