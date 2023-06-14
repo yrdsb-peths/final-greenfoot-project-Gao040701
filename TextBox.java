@@ -13,7 +13,7 @@ public class TextBox extends Actor
     public Label text;
     Label yes = new Label("Yes", 30);
     Label no = new Label("No", 30);
-    Label notEnough = new Label("... Don't lie to me. ", 30);
+    Label notEnough = new Label("You don't have enough coins", 30);
     ArrayList<String> thornsOne = new ArrayList<String>();
     ArrayList<String> thornsTwo = new ArrayList<String>();
     int index = 0;

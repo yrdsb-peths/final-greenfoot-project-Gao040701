@@ -18,7 +18,7 @@ public class InstructionButton extends Actor
             setImage(instruc1);
         }
         if (Greenfoot.mouseClicked(this)){
-            
+            Greenfoot.setWorld(new Instructions());
         }
     }
     public InstructionButton(){
