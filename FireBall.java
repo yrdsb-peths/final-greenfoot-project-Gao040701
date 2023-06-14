@@ -8,41 +8,44 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FireBall extends Hurt
 {
-    GreenfootImage[] fireBall = new GreenfootImage[5];
+    GreenfootImage[] fireBalls = new GreenfootImage[5];
     int dy = 0;
     SimpleTimer animationTimer = new SimpleTimer();
-    public void act()
-    {
-        animateFireBall();
-        move();
-        super.removeCat(2);
-        
-    }
+    
     public void FireBall(){
-        for (int i = 0; i < fireBall.length; i++){
-            fireBall[i] = new GreenfootImage("images/fireBall/FB" + i + ".png");
-            fireBall[i].scale(40, 80);
+        for (int i = 0; i < fireBalls.length; i++){
+            fireBalls[i] = new GreenfootImage("images/fireBall/FB" + i + ".png");
+            fireBalls[i].scale(40, 80);
         }
-        setImage(fireBall[0]);
+        setImage(fireBalls[0]);
         animationTimer.mark();
     }
+    
     private int imageIndex = 0;
     public void animateFireBall(){
-        if (animationTimer.millisElapsed() < 100){
+        if (animationTimer.millisElapsed() < 500){
             return;
         }
         animationTimer.mark(); 
-        imageIndex = (imageIndex + 1) % fireBall.length;
-        setImage(fireBall[imageIndex]);
+        imageIndex = (imageIndex + 1) % fireBalls.length;
+        setImage(fireBalls[imageIndex]);
     }
-    public void move(){
-        while (!isTouching(Solids.class) && !(getY() >= 400)){
-            setLocation(getX(), getY() + dy);
-            dy+=0.5;
-        }
-        if (isTouching(Solids.class) || getY() >= 400){
+    
+    public void act()
+    {
+        // animateFireBall();
+        
+        // Move the fireball
+        if (!isTouching(Solids.class) && getY() < 400){
+            setLocation(getX(), getY() + 1);
+            dy += 1;
+        } else {
             setLocation(getX(), 0);
             dy = 0;
         }
+        super.removeCat(2);
+        
     }
+    
+    
 }
