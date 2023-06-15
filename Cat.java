@@ -177,6 +177,10 @@ public class Cat extends Actor
                 GameOne world = (GameOne) getWorld();
                 world.toNextTwo();
             }
+            if (getWorld().getClass().getName().equals("GameTwo")){
+                GameTwo world = (GameTwo) getWorld();
+                world.end();
+            }
             if (getWorld().getClass().getName().equals("Random")){
                 Random world = (Random) getWorld();
                 world.resetWorld();

@@ -150,4 +150,8 @@ public class GameTwo extends World
         coinLabel = new Label(coin,50);
         addObject(coinLabel, 50, 50);
     }
+    
+    public void end(){
+        Greenfoot.setWorld(new GameOver(0, "tutorial"));
+    }
 }
