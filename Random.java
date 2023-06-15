@@ -226,6 +226,7 @@ public class Random extends World
         removeObjects(getObjects(Speakers.class));
         removeObjects(getObjects(TextBubble.class));
         removeObjects(getObjects(FireBall.class));
+        removeObjects(getObjects(Arrow.class));
         x = 100;
         y = 400;
         
@@ -237,6 +238,8 @@ public class Random extends World
         createWithBar (ground2, 600,370);
         ExistGameButton exit = new ExistGameButton();
         addObject(exit, 575, 375);
+        Arrow arrow = new Arrow();
+        addObject(arrow, 560, 315);
         
         Cat cat = new Cat();
         addObject(cat, 50, 250);
