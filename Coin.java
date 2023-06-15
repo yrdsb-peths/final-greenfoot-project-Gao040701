@@ -22,6 +22,7 @@ public class Coin extends Actor
     public void act(){
         animateCoin();
     }
+    
     public void animateCoin()
     {
         if (animationTimer.millisElapsed() < 200){

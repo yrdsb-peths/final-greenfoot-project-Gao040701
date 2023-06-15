@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * fire ball 
  * 
- * @author Anela 
+ * @author Angela 
  * @version 06/14/2023
  */
 public class FireBall extends Hurt
@@ -22,6 +22,9 @@ public class FireBall extends Hurt
     }
     
     private int imageIndex = 0;
+    /**
+     * animate the fire ball 
+     */
     public void animateFireBall(){
         if (animationTimer.millisElapsed() < 100){
             return;
@@ -33,25 +36,31 @@ public class FireBall extends Hurt
     
     public void act()
     {
-        animateFireBall();
-        
-        // Move the fireball
+        if (getWorld().getObjects(TextBox.class)!=null){
+            if (!TextBox.getIsTalking()){
+                animateFireBall();
+                // Move the fireball
+                move();
+            }
+        }
+    }
+    
+    /**
+     * set the speed of the fire ball
+     */
+    public void setSpd(int theSpd){
+        spd = theSpd;
+    }
+    
+    /**
+     * the fire ball fall down in a constant speed and restartwhen touching cat or solid 
+     */
+    public void move(){
         if (!isTouching(Solids.class) && getY() < 400 && !isTouching(Cat.class)){
             setLocation(getX(), getY() + spd);
         } else {
-            super.removeCat(2);
+            super.removeCat(1);
             setLocation(Greenfoot.getRandomNumber(600), 0);
         }
-        
-    }
-    
-    public int getSpd(){
-        return spd;
-    }
-    public void increaseSpd(){
-        spd++;
-    }
-    public void setSpd(int theSpd){
-        spd = theSpd;
     }
 }

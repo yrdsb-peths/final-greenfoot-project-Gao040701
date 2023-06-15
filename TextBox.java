@@ -22,11 +22,17 @@ public class TextBox extends Actor
     int heartVal;
     boolean previousSpace = false;
     boolean finishChoosing = false;
+    static boolean isTalking = false;
     public void act()
     {
-        presentText1();
+        isTalking = true;
+        presentText();
     }
-    public void presentText1(){
+    
+    /** 
+     * print the NPC's text on the screen and allow the player to make choices 
+     */
+    public void presentText(){
         if (getWorld() instanceof GameTwo){
             GameTwo world = (GameTwo) getWorld();
             world.removeBubble();
@@ -49,9 +55,9 @@ public class TextBox extends Actor
             }
             if (Greenfoot.mouseClicked(yes)){
                 click.play();
-                if (world.getScore() >= 2){
+                if (world.getCoin() >= 2){
                     heal.play();
-                    world.DecreaseScore(2);
+                    world.decreaseCoin(2);
                     world.minusHeartVal(-2);
                     heartVal = world.getHeartVal(); 
                     world.removeObjects(world.getObjects(Heart.class));
@@ -75,7 +81,7 @@ public class TextBox extends Actor
                 world.removeLabel();
                 world.removeTextBox(this);
                 world.removeCharacter();
-                
+                isTalking = false;
             }
         }else{
             Random world = (Random) getWorld();
@@ -99,9 +105,9 @@ public class TextBox extends Actor
             }
             if (Greenfoot.mouseClicked(yes)){
                 click.play();
-                if (world.getScore() >= 5){
+                if (world.getCoin() >= 5){
                     heal.play();
-                    world.DecreaseScore(5);
+                    world.decreaseCoin(5);
                     world.minusHeartVal(-2);
                     heartVal = world.getHeartVal(); 
                     world.removeObjects(world.getObjects(Heart.class));
@@ -125,6 +131,7 @@ public class TextBox extends Actor
                 world.removeLabel();
                 world.removeTextBox(this);
                 world.removeCharacter();
+                isTalking = false;
             }
         }
     }
@@ -133,18 +140,29 @@ public class TextBox extends Actor
         addTextTwo();
         setImage(textBox);
     }
+    
+    /**
+     * NPC's words in the tutorial 
+     */
     public void addTextOne(){
         thornsOne.add("Hello, little warrior.");
         thornsOne.add("I am Thorns and I will help you \n in your future advanture.");
         thornsOne.add("You can pay me 5 coins to get 1 heart.");
         thornsOne.add("You only need to pay me 2 coins this time.");
     }
+    
+    /**
+     * NPC's words in the random game mode 
+     */
     public void addTextTwo(){
         thornsTwo.add("Hello, nice to see you again. ");
         thornsTwo.add("Do you want to pay 5 coins to get a heart?");
     }
-    public void getChoice(){
-        getWorld().addObject(new TextBox(), 550,200);
-        getWorld().addObject(new Label("Yes", 50), 550, 200);
+    
+    /**
+     * allow other actors to know if they need to stop when talking 
+     */
+    public static boolean getIsTalking(){
+        return isTalking;
     }
 }

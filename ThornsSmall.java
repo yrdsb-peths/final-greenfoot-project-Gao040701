@@ -17,6 +17,9 @@ public class ThornsSmall extends Speakers
         thornsSmall.scale(200,200);
         setImage(thornsSmall);
     }
+    /**
+     * create text bubble when cat is close to NPC to start the conversation 
+     */
     public void createBubble(){
         if (getWorld() instanceof GameTwo){
             GameTwo world = (GameTwo) getWorld();

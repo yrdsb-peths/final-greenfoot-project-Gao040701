@@ -12,7 +12,8 @@ public class GameOver extends World
     Label finalScoreLabel = new Label(finalScore, 70);
     GreenfootImage gameOverScreen = new GreenfootImage("images/gameOverScreen.png");
     GreenfootSound finishGame = new GreenfootSound("finishGame.mp3");
-    public GameOver(int finalScore)
+    String name;
+    public GameOver(int finalScore, String name)
     {    
         super(600, 400, 1); 
         
@@ -27,7 +28,7 @@ public class GameOver extends World
         
         HomeButton homeButton = new HomeButton();
         addObject(homeButton, 200, 330);
-        NewGameButton newGame = new NewGameButton();
+        NewGameButton newGame = new NewGameButton(name);
         addObject(newGame, 400, 330);
     }
     public void act(){

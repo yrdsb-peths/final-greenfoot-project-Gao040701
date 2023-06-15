@@ -21,10 +21,18 @@ public class Enemy extends Hurt
     }
     private int imageIndex = 0;
     public void act(){
-        animateEnemy();
-        constantMove();
-        super.removeCat(1);
+        if (getWorld().getObjects(TextBox.class)!=null){
+            if (!TextBox.getIsTalking()){
+                animateEnemy();
+                constantMove();
+                super.removeCat(1);
+            }
+        }
     }
+    
+    /**
+     * animate the enemy 
+     */
     public void animateEnemy()
     {
         if (animationTimer.millisElapsed() < 200){
@@ -36,6 +44,10 @@ public class Enemy extends Hurt
     }
     int fadeAmount = 3;
     int volume = 0;
+    
+    /**
+     * moe the enemy up and down 
+     */
     public void constantMove(){
         setLocation(getX(),getY() + fadeAmount);
         volume += fadeAmount;

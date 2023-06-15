@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Thorns - one of the speaker, provide medicine with exchange of apples(?)
+ * Thorns - one of the speaker, can heal the cat 
  * 
  * @author Angela
  * @version 06/06/2023

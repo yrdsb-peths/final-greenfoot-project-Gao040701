@@ -1,20 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Game One scene 
+ * Game One scene for tutorial  
  * 
  * @author Angela 
  * @version 05/30/2023
  */
 public class GameOne extends World
 {
-    private int score = 0;
+    private int coin = 0;
     private int heartVal = 6;
     Label coinLabel;
     public GameOne()
     {    
         super(600, 400, 1,false);
-        score = 0;
+        coin = 0;
         heartVal = 6;
         
         Water water = new Water();
@@ -30,6 +30,8 @@ public class GameOne extends World
         Ground1 ground13 = new Ground1();
         addObject(ground13, 600, 380);
         createBar(ground13);
+        Arrow arrow = new Arrow();
+        addObject(arrow, 560, 325);
         Cloud cloud1 = new Cloud();
         addObject(cloud1, 345, 320);
         createBar(cloud1);
@@ -41,7 +43,7 @@ public class GameOne extends World
         addObject(coin2, 510, 230);
         createBar(cloud3);
         
-        coinLabel = new Label(score,50);
+        coinLabel = new Label(coin,50);
         addObject(coinLabel, 50, 50);
         Heart heart = new Heart(heartVal);
         addObject(heart, 80, 100);
@@ -55,15 +57,21 @@ public class GameOne extends World
     
     public void act(){
         if (heartVal <= 0){
-            Greenfoot.setWorld(new GameOver(0));
+            Greenfoot.setWorld(new GameOver(0, "tutorial"));
         }
     }
     
-    public void IncreaseScore(){
-        score++;
-        coinLabel.setValue(score);
+    /**
+     * increase number of coins by one and reset the coin label 
+     */
+    public void increaseCoin(){
+        coin++;
+        coinLabel.setValue(coin);
     }
     
+    /**
+     * create bars beside each solid to stop the cat
+     */
     public void createBar(Solids solid){
         int x = solid.getX();
         int y = solid.getY();
@@ -75,18 +83,32 @@ public class GameOne extends World
         addObject(rightBarrier, x+width/2, y);
     }
     
+    /**
+     * return the cat's heart value
+     */
     public int getHeartVal(){
         return heartVal;
     }
+    
+    /**
+     * decrease the cat's jeart value by a specific number 
+     */
     public void minusHeartVal(int val){
         heartVal -= val;
     }
+    
+    /**
+     * set heart value to a specific number 
+     */
     public void setHeart(int heartLeft){
         Heart heart = new Heart(heartLeft);
         addObject(heart, 80, 100);
     }
     
+    /**
+     * go to next roud in the tutorial 
+     */
     public void toNextTwo(){
-        Greenfoot.setWorld(new GameTwo(score, heartVal));
+        Greenfoot.setWorld(new GameTwo(coin, heartVal));
     }
 }

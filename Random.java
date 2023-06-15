@@ -16,7 +16,7 @@ public class Random extends World
     int addX;
     int addY;
     int games = 1;
-    private int score = 0;
+    private int coin = 0;
     private int heartVal = 6;
     Label coinLabel;
     Label gameNumLabel;
@@ -33,10 +33,12 @@ public class Random extends World
         createWithBar (ground1, 40,370);
         Ground1 ground2 = new Ground1();
         createWithBar (ground2, 600,370);
+        Arrow arrow = new Arrow();
+        addObject(arrow, 560, 315);
         
         randomCreate();
         
-        coinLabel = new Label(score,50);
+        coinLabel = new Label(coin,50);
         addObject(coinLabel, 50, 50);
         Heart heart = new Heart(heartVal);
         addObject(heart, 80, 100);
@@ -49,6 +51,17 @@ public class Random extends World
         addObject(cat, 50, 250);
 
     }
+    
+    public void act(){
+        if (heartVal <= 0){
+            finalScore = getFinalScore();
+            Greenfoot.setWorld(new GameOver(finalScore, "random"));
+        }
+    }
+    
+    /**
+     * randomly create solids in the world 
+     */
     public void randomCreate(){
         //larger gap if a ground is created. smaller when a cloud 
         numThorns = 0;
@@ -97,18 +110,34 @@ public class Random extends World
             }
         }
     }
+    
+    /** 
+     * get the random change in x and y when the second solid is higher 
+     */
     public void randomPositionPos(){
         changeX = addX + Greenfoot.getRandomNumber(40);
         changeY = addY + Greenfoot.getRandomNumber(100);
     }
+    
+    /**
+     * get the random change in x and y when the second solid is lower 
+     */
     public void randomPositionNeg(){
         changeX =  addX + Greenfoot.getRandomNumber(40);
         changeY = - (addY + Greenfoot.getRandomNumber(40));
     }
+    
+    /** 
+     * create solids with bars on its left and right side 
+     */
     public void createWithBar(Solids solid, int x, int y){
         addObject(solid, x, y);
         createBar(solid);
     }
+    
+    /**
+     * create bars beside each solid to stop the cat
+     */
     public void createBar(Solids solid){
         int x = solid.getX();
         int y = solid.getY();
@@ -120,42 +149,69 @@ public class Random extends World
         addObject(rightBarrier, x+width/2, y);
     }
     
-    public void act(){
-        if (heartVal <= 0){
-            finalScore = getFinalScore();
-            Greenfoot.setWorld(new GameOver(finalScore));
-        }
-    }
     
+    /**
+     * get the final score 
+     */
     public int getFinalScore(){
-        return (score + games) * 10;
+        return (coin + games) * 10;
     }
     
-    public void IncreaseScore(){
-        score++;
-        coinLabel.setValue(score);
+    /**
+     * increase coin value by 1
+     */
+    public void increaseCoin(){
+        coin++;
+        coinLabel.setValue(coin);
     }
-    public void DecreaseScore(int num){
-        score-= num;
-        coinLabel.setValue(score);
+    
+    /**
+     * decrease the coin value by a specific amount 
+     */
+    public void decreaseCoin(int num){
+        coin-= num;
+        coinLabel.setValue(coin);
     }
-    public int getScore(){
-        return score;
+    
+    /**
+     * get the current number of coins 
+     */
+    public int getCoin(){
+        return coin;
     }
+    
+    /**
+     * set the round number 
+     */
     public void setGameNumLabel(){
         gameNumLabel.setValue(games);
     }
     
+    /**
+     * return the cat's heart value
+     */
     public int getHeartVal(){
         return heartVal;
     }
+    
+    /**
+     * decrease the cat's jeart value by a specific number 
+     */
     public void minusHeartVal(int val){
         heartVal -= val;
     }
+    
+    /**
+     * set heart value to a specific number 
+     */
     public void setHeart(int heartLeft){
         Heart heart = new Heart(heartLeft);
         addObject(heart, 80, 100);
     }
+    
+    /**
+     * reset the world
+     */
     public void resetWorld(){
         games++;
         if (games % 5 == 0){
@@ -185,22 +241,42 @@ public class Random extends World
         Cat cat = new Cat();
         addObject(cat, 50, 250);
     }
+    
+    /** 
+     * remove the NPC's words
+     */
     public void removeLabel(){
         removeObjects(getObjects(Label.class));
-        coinLabel = new Label(score,50);
+        coinLabel = new Label(coin,50);
         addObject(coinLabel, 50, 50);
         gameNumLabel = new Label(games, 70);
         addObject(gameNumLabel, 300, 70);
     }
+    
+    /**
+     * remove the NPC
+     */
     public void removeCharacter(){
         removeObjects(getObjects(Speakers.class));
     }
+    
+    /**
+     * remove the textBubbles
+     */
     public void removeBubble(){
         removeObjects(getObjects(TextBubble.class));
     }
+    
+    /**
+     * add the NPC's words
+     */
     public void addText(Label label){
         addObject(label, 300, 300);
     }
+    
+    /**
+     * remove the tsxtBoxes
+     */
     public void removeTextBox(TextBox box){
         removeObjects(getObjects(TextBox.class));
     }

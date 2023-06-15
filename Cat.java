@@ -56,12 +56,18 @@ public class Cat extends Actor
     private boolean isJumping = false;
     public void act()
     {
-        move();
-        animateCat();
-        getCoin();
-        Next();
+        if (getWorld().getObjects(TextBox.class)!=null){
+            if (!TextBox.getIsTalking()){
+                move();
+                animateCat();
+                getCoin();
+                Next();
+            }
+        }
     }
-    
+    /**
+     * set up animation for cat 
+     */
     public void animateCat(){
         if (animationTimer.millisElapsed() < 100){
             return;
@@ -92,8 +98,11 @@ public class Cat extends Actor
         }
     }
     
+    /**
+     * move the cat
+     */
     public void move(){
-        if (Greenfoot.isKeyDown("Up")&& isTouching(Solids.class)){
+        if (Greenfoot.isKeyDown("Up")&& isTouching(Solids.class) && getY() < getOneIntersectingObject(Solids.class).getY()){
             jumpSound.play();
             dy = -15; 
             setLocation(getX(), getY() + dy); 
@@ -128,20 +137,26 @@ public class Cat extends Actor
         touchBar();
     }
     
+    /**
+     * get the number of coins earned 
+     */
     public void getCoin(){
         if (isTouching(Coin.class)){
             getCoin.play();
             removeTouching(Coin.class);
             if (getWorld() instanceof GameOne){
                 GameOne world = (GameOne) getWorld();
-                world.IncreaseScore();
+                world.increaseCoin();
             }else{
                 Random world = (Random) getWorld();
-                world.IncreaseScore();
+                world.increaseCoin();
             }
         }
     }
     
+    /**
+     * stop the cat if it's touching the barriers
+     */
     public void touchBar(){
         if (isTouching(LeftBarrier.class)){
             setLocation(getX()-3,getY());
@@ -149,18 +164,18 @@ public class Cat extends Actor
             setLocation(getX()+3,getY());
         }else if (isTouching(BottomBarrier.class)){
             setLocation(getX(), getY()-dy*2);
+            dy = 0;
         }
     }
     
+    /** 
+     * go to next world or reset the world when the cat reaches the end of the world 
+     */
     public void Next(){
         if(getX() >= 600){
             if (getWorld().getClass().getName().equals("GameOne")){
                 GameOne world = (GameOne) getWorld();
                 world.toNextTwo();
-            }
-            if (getWorld().getClass().getName().equals("GameTwo")){
-                GameTwo world = (GameTwo) getWorld();
-                world.toNextThree();
             }
             if (getWorld().getClass().getName().equals("Random")){
                 Random world = (Random) getWorld();

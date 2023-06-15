@@ -1,18 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class solids here.
+ * solids that the cat can stand on 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Angela 
+ * @version 06/14/2023
  */
 public class Solids extends Actor
 {
-    private int height;
-    /**
-     * Act - do whatever the solids wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+        
     public void act()
     {
         // Add your action code here.

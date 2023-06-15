@@ -23,9 +23,9 @@ public class ExistGameButton extends Actor
             if (getWorld() instanceof Random){
                 Random world = (Random) getWorld();
                 finalScore = world.getFinalScore();
-                Greenfoot.setWorld(new GameOver(finalScore));
+                Greenfoot.setWorld(new GameOver(finalScore, "random"));
             }else if (getWorld() instanceof GameTwo){
-                Greenfoot.setWorld(new GameOver(0));
+                Greenfoot.setWorld(new GameOver(0, "tutorial"));
             }
         }
     }

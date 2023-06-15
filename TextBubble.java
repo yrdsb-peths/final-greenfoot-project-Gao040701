@@ -12,6 +12,9 @@ public class TextBubble extends Actor
     {
         startText();
     }
+    /**
+     * start the conservation when text bubble is clicked 
+     */
     public void startText(){
         if (Greenfoot.mouseClicked(this)){
             click.play();

@@ -10,6 +10,10 @@ public class Hurt extends Actor
 {
     static int heartVal;
     GreenfootSound hurtSound = new GreenfootSound ("hurtSound.mp3");
+    
+    /**
+     * decrease a heart value and the cat go back to the starting point 
+     */
     public void removeCat(int heartLost){
         if (isTouching(Cat.class)){
             hurtSound.play();
