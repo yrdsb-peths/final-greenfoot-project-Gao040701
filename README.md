@@ -15,6 +15,7 @@ The player can use the left and right arrow keys to move left and right respecti
 
 ## Contact 
 Angela Gao - 349968818@gapps.yrdsb.ca 
+
 Project Link: [https://github.com/yrdsb-peths/final-greenfoot-project-Gao040701](https://github.com/yrdsb-peths/final-greenfoot-project-Gao040701)
 
 ## Acknowledgments
