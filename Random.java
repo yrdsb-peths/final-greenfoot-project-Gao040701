@@ -47,6 +47,8 @@ public class Random extends World
         ExistGameButton exit = new ExistGameButton();
         addObject(exit, 575, 375);
         
+        addObject(new RightBarrier(5, 400, 90), 0, 200);
+        
         Cat cat = new Cat();
         addObject(cat, 50, 250);
 
@@ -240,6 +242,7 @@ public class Random extends World
         addObject(exit, 575, 375);
         Arrow arrow = new Arrow();
         addObject(arrow, 560, 315);
+        addObject(new RightBarrier(5, 400, 90), 0, 200);
         
         Cat cat = new Cat();
         addObject(cat, 50, 250);

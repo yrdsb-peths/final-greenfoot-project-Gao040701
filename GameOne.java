@@ -48,6 +48,8 @@ public class GameOne extends World
         Heart heart = new Heart(heartVal);
         addObject(heart, 80, 100);
         
+        addObject(new RightBarrier(5, 400, 90), 0, 200);
+        
         Cat cat = new Cat ();
         addObject(cat, 50, 250);
         
@@ -77,8 +79,8 @@ public class GameOne extends World
         int y = solid.getY();
         int height = solid.getImage().getHeight();
         int width = solid.getImage().getWidth();
-        LeftBarrier leftBarrier = new LeftBarrier(5,height-5,90);
-        RightBarrier rightBarrier = new RightBarrier(5,height-5,90);
+        LeftBarrier leftBarrier = new LeftBarrier(5,height-1,90);
+        RightBarrier rightBarrier = new RightBarrier(5,height-1,90);
         addObject(leftBarrier, x-width/2, y);
         addObject(rightBarrier, x+width/2, y);
     }

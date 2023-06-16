@@ -45,6 +45,8 @@ public class GameTwo extends World
         Heart heart = new Heart(heartVal);
         addObject(heart, 80, 100);
         
+        addObject(new RightBarrier(5, 400, 90), 0, 200);
+        
         Cat cat = new Cat ();
         addObject(cat, 10, 250);
     }
